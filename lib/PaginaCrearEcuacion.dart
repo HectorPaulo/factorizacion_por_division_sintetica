@@ -22,7 +22,7 @@ class _PaginaCrearEcuacionState extends State<PaginaCrearEcuacion> {
     int valorIndependiente = widget.polinomio.valorIndependiente;
 
     return Scaffold(
-      backgroundColor: Colors.black12,
+      backgroundColor: Colors.black,
       body: Center(
         child: Form(
           key: _formKey,
@@ -44,7 +44,7 @@ class _PaginaCrearEcuacionState extends State<PaginaCrearEcuacion> {
                         vertical: 10.0,
                       ),
                       child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
+                        crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
                           Text(
                             i < grado
@@ -53,37 +53,40 @@ class _PaginaCrearEcuacionState extends State<PaginaCrearEcuacion> {
                             style: const TextStyle(
                                 fontSize: 18, color: Colors.white),
                           ),
-                          const SizedBox(height: 10),
-                          TextFormField(
-                            initialValue: coeficientes[i].toString(),
-                            keyboardType: TextInputType.number,
-                            decoration: InputDecoration(
-                              enabledBorder: OutlineInputBorder(
-                                borderSide:
-                                    const BorderSide(color: Colors.white),
-                                borderRadius: BorderRadius.circular(12),
+                          const SizedBox(height: 20),
+                          SizedBox(
+                            width: 150,
+                            child: TextFormField(
+                              initialValue: coeficientes[i].toString(),
+                              keyboardType: TextInputType.number,
+                              decoration: InputDecoration(
+                                enabledBorder: OutlineInputBorder(
+                                  borderSide:
+                                      const BorderSide(color: Colors.white),
+                                  borderRadius: BorderRadius.circular(12),
+                                ),
+                                focusedBorder: OutlineInputBorder(
+                                  borderSide: const BorderSide(
+                                      color: Colors.deepPurple),
+                                  borderRadius: BorderRadius.circular(12),
+                                ),
+                                hintText: 'Ej. 3',
+                                fillColor: Colors.grey[200],
+                                filled: true,
                               ),
-                              focusedBorder: OutlineInputBorder(
-                                borderSide:
-                                    const BorderSide(color: Colors.deepPurple),
-                                borderRadius: BorderRadius.circular(12),
-                              ),
-                              hintText: 'Ej. 3',
-                              fillColor: Colors.grey[200],
-                              filled: true,
+                              validator: (value) {
+                                if (value == null || value.isEmpty) {
+                                  return 'Por favor ingresa el coeficiente';
+                                }
+                                return null;
+                              },
+                              onChanged: (value) {
+                                setState(() {
+                                  coeficientes[i] = int.tryParse(value) ?? 0;
+                                });
+                              },
                             ),
-                            validator: (value) {
-                              if (value == null || value.isEmpty) {
-                                return 'Por favor ingresa el coeficiente';
-                              }
-                              return null;
-                            },
-                            onChanged: (value) {
-                              setState(() {
-                                coeficientes[i] = int.tryParse(value) ?? 0;
-                              });
-                            },
-                          ),
+                          )
                         ],
                       ),
                     );

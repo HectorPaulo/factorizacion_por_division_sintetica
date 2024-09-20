@@ -10,7 +10,7 @@ class PaginaResultado extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: Colors.black12,
+        backgroundColor: Colors.black,
         body: Center(
             child: Row(
           mainAxisAlignment: MainAxisAlignment.center,

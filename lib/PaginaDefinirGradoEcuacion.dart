@@ -41,7 +41,7 @@ class _PaginaDefinirGradoEcuacionState
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.black12,
+      backgroundColor: Colors.black,
       body: Center(
         child: Form(
           key: _formKey,
@@ -55,34 +55,37 @@ class _PaginaDefinirGradoEcuacionState
               const SizedBox(height: 20),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 25.0),
-                child: TextFormField(
-                  keyboardType: TextInputType.number,
-                  decoration: InputDecoration(
-                    enabledBorder: OutlineInputBorder(
-                      borderSide: const BorderSide(color: Colors.white),
-                      borderRadius: BorderRadius.circular(12),
+                child: SizedBox(
+                  width: 150,
+                  child: TextFormField(
+                    keyboardType: TextInputType.number,
+                    decoration: InputDecoration(
+                      enabledBorder: OutlineInputBorder(
+                        borderSide: const BorderSide(color: Colors.white),
+                        borderRadius: BorderRadius.circular(12),
+                      ),
+                      focusedBorder: OutlineInputBorder(
+                        borderSide: const BorderSide(color: Colors.deepPurple),
+                        borderRadius: BorderRadius.circular(12),
+                      ),
+                      hintText: 'Ej. 3',
+                      fillColor: Colors.grey[200],
+                      filled: true,
                     ),
-                    focusedBorder: OutlineInputBorder(
-                      borderSide: const BorderSide(color: Colors.deepPurple),
-                      borderRadius: BorderRadius.circular(12),
-                    ),
-                    hintText: 'Ej. 3',
-                    fillColor: Colors.grey[200],
-                    filled: true,
+                    validator: (value) {
+                      if (value == null || value.isEmpty) {
+                        return 'Por favor ingresa el grado';
+                      }
+                      return null;
+                    },
+                    onChanged: (value) {
+                      setState(() {
+                        _grado = int.tryParse(value) ?? 0;
+                        _coeficientes = List<int>.filled(
+                            _grado + 1, 0); // Inicializar coeficientes
+                      });
+                    },
                   ),
-                  validator: (value) {
-                    if (value == null || value.isEmpty) {
-                      return 'Por favor ingresa el grado';
-                    }
-                    return null;
-                  },
-                  onChanged: (value) {
-                    setState(() {
-                      _grado = int.tryParse(value) ?? 0;
-                      _coeficientes = List<int>.filled(
-                          _grado + 1, 0); // Inicializar coeficientes
-                    });
-                  },
                 ),
               ),
               const SizedBox(height: 20),
