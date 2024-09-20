@@ -1,7 +1,7 @@
 class Polinomio {
-  List<int> coeficientes;
-  int grado;
-  int valorIndependiente;
+  var coeficientes = [];
+  double grado;
+  double valorIndependiente;
 
   Polinomio({
     required this.coeficientes,

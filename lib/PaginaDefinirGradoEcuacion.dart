@@ -14,9 +14,9 @@ class PaginaDefinirGradoEcuacion extends StatefulWidget {
 class _PaginaDefinirGradoEcuacionState
     extends State<PaginaDefinirGradoEcuacion> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
-  int _grado = 0;
-  List<int> _coeficientes = [];
-  final int _valorIndependiente = 0;
+  double _grado = 0;
+  List<double> _coeficientes = [];
+  final double _valorIndependiente = 0;
 
   void _savePolinomio() {
     if (_formKey.currentState!.validate()) {
@@ -80,9 +80,9 @@ class _PaginaDefinirGradoEcuacionState
                     },
                     onChanged: (value) {
                       setState(() {
-                        _grado = int.tryParse(value) ?? 0;
-                        _coeficientes = List<int>.filled(
-                            _grado + 1, 0); // Inicializar coeficientes
+                        _grado = double.tryParse(value) ?? 0;
+                        _coeficientes = List<double>.filled(
+                            (_grado + 1) as int, 0); // Inicializar coeficientes
                       });
                     },
                   ),

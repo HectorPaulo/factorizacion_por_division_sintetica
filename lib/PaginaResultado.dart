@@ -24,6 +24,9 @@ class PaginaResultado extends StatelessWidget {
                 ),
                 const SizedBox(width: 20),
                 // TODO: --> Mostrar las soluciones
+                Text(
+                  _divisionSintetica(),
+                ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
@@ -63,8 +66,8 @@ class PaginaResultado extends StatelessWidget {
   String _mostrarEcuacion() {
     String ecuacion = '';
     for (int i = 0; i < polinomio.coeficientes.length; i++) {
-      int coeficiente = polinomio.coeficientes[i];
-      int exponente = polinomio.grado - i;
+      double coeficiente = polinomio.coeficientes[i];
+      double exponente = polinomio.grado - i;
 
       if (coeficiente != 0) {
         if (i > 0 && coeficiente > 0) {
@@ -85,7 +88,38 @@ class PaginaResultado extends StatelessWidget {
     }
     return ecuacion;
   }
+
 // TODO --> Implementar la division sintetica
-  // double _divisionSintetica(){
-  //   String ecuacion = _mostrarEcuacion();
+  String _divisionSintetica() {
+    String ecuacion = _mostrarEcuacion();
+    bool esRaiz = false;
+    var divisores = [];
+    var resultado = [];
+    // int divisor;
+    double terminoIndependiente =
+        polinomio.coeficientes[(polinomio.grado) as int];
+    do {
+      // --> calcular los divisores
+      for (double i = 0; i < terminoIndependiente; i++) {
+        if (terminoIndependiente % i == 0) {
+          divisores.add(i);
+          divisores.add(-i);
+        }
+      }
+      for (double i = 0; i < divisores.length; i++) {
+        resultado.add(polinomio.coeficientes[0]);
+        for (int j = 1; j < polinomio.grado; i++) {
+          double aux = polinomio.coeficientes[j] + resultado[j - 1] * i;
+          resultado.add(aux);
+        }
+        // divisor = i;
+        if (resultado[0] == 0) {
+          // print("El divisor ", divisor, " es raíz.");
+          esRaiz = true;
+        }
+      }
+    } while (polinomio.grado >= 2 && esRaiz == false);
+    if (polinomio.grado == 1) {}
+    return ecuacion;
+  }
 }

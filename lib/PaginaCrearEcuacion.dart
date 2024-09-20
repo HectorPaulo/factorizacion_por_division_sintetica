@@ -17,9 +17,9 @@ class _PaginaCrearEcuacionState extends State<PaginaCrearEcuacion> {
 
   @override
   Widget build(BuildContext context) {
-    final int grado = widget.polinomio.grado;
-    List<int> coeficientes = widget.polinomio.coeficientes;
-    int valorIndependiente = widget.polinomio.valorIndependiente;
+    final double grado = widget.polinomio.grado;
+    var coeficientes = widget.polinomio.coeficientes;
+    double valorIndependiente = widget.polinomio.valorIndependiente;
 
     return Scaffold(
       backgroundColor: Colors.black,
@@ -36,7 +36,8 @@ class _PaginaCrearEcuacionState extends State<PaginaCrearEcuacion> {
               const SizedBox(height: 20),
               Expanded(
                 child: ListView.builder(
-                  itemCount: grado + 1, // Incluye el término independiente
+                  itemCount:
+                      ((grado + 1) as int), // Incluye el término independiente
                   itemBuilder: (context, i) {
                     return Padding(
                       padding: const EdgeInsets.symmetric(
@@ -126,7 +127,7 @@ class _PaginaCrearEcuacionState extends State<PaginaCrearEcuacion> {
                         );
                       }
                     },
-                    child: const Text('Guardar Ecuación'),
+                    child: const Text('Guardar'),
                   ),
                 ],
               ),
