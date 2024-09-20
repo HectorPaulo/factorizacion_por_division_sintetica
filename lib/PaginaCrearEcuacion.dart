@@ -1,3 +1,4 @@
+import 'package:factorizacion_por_division_sintetica/PaginaDefinirGradoEcuacion.dart';
 import 'package:flutter/material.dart';
 import 'package:factorizacion_por_division_sintetica/polinomio.dart';
 import 'PaginaAceptarEcuacion.dart';
@@ -95,7 +96,11 @@ class _PaginaCrearEcuacionState extends State<PaginaCrearEcuacion> {
                 children: [
                   ElevatedButton(
                     onPressed: () {
-                      Navigator.pop(context);
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) =>
+                                  const PaginaDefinirGradoEcuacion()));
                     },
                     child: const Text('Volver'),
                   ),

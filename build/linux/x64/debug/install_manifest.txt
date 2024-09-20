@@ -1,0 +1,14 @@
+/home/paulo/Documentos/trabajos/creados/flutter/factorizacion_por_division_sintetica/build/linux/x64/debug/bundle/factorizacion_por_division_sintetica
+/home/paulo/Documentos/trabajos/creados/flutter/factorizacion_por_division_sintetica/build/linux/x64/debug/bundle/data/icudtl.dat
+/home/paulo/Documentos/trabajos/creados/flutter/factorizacion_por_division_sintetica/build/linux/x64/debug/bundle/lib/libflutter_linux_gtk.so
+/home/paulo/Documentos/trabajos/creados/flutter/factorizacion_por_division_sintetica/build/linux/x64/debug/bundle/data/flutter_assets/shaders/ink_sparkle.frag
+/home/paulo/Documentos/trabajos/creados/flutter/factorizacion_por_division_sintetica/build/linux/x64/debug/bundle/data/flutter_assets/FontManifest.json
+/home/paulo/Documentos/trabajos/creados/flutter/factorizacion_por_division_sintetica/build/linux/x64/debug/bundle/data/flutter_assets/version.json
+/home/paulo/Documentos/trabajos/creados/flutter/factorizacion_por_division_sintetica/build/linux/x64/debug/bundle/data/flutter_assets/AssetManifest.bin
+/home/paulo/Documentos/trabajos/creados/flutter/factorizacion_por_division_sintetica/build/linux/x64/debug/bundle/data/flutter_assets/NOTICES.Z
+/home/paulo/Documentos/trabajos/creados/flutter/factorizacion_por_division_sintetica/build/linux/x64/debug/bundle/data/flutter_assets/packages/cupertino_icons/assets/CupertinoIcons.ttf
+/home/paulo/Documentos/trabajos/creados/flutter/factorizacion_por_division_sintetica/build/linux/x64/debug/bundle/data/flutter_assets/AssetManifest.json
+/home/paulo/Documentos/trabajos/creados/flutter/factorizacion_por_division_sintetica/build/linux/x64/debug/bundle/data/flutter_assets/assets/tux.jpg
+/home/paulo/Documentos/trabajos/creados/flutter/factorizacion_por_division_sintetica/build/linux/x64/debug/bundle/data/flutter_assets/assets/LSlogo.png
+/home/paulo/Documentos/trabajos/creados/flutter/factorizacion_por_division_sintetica/build/linux/x64/debug/bundle/data/flutter_assets/kernel_blob.bin
+/home/paulo/Documentos/trabajos/creados/flutter/factorizacion_por_division_sintetica/build/linux/x64/debug/bundle/data/flutter_assets/fonts/MaterialIcons-Regular.otf

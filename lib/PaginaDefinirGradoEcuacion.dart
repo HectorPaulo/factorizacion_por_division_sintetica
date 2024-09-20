@@ -16,7 +16,7 @@ class _PaginaDefinirGradoEcuacionState
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   int _grado = 0;
   List<int> _coeficientes = [];
-  int _valorIndependiente = 0;
+  final int _valorIndependiente = 0;
 
   void _savePolinomio() {
     if (_formKey.currentState!.validate()) {

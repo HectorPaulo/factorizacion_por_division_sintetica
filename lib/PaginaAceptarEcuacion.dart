@@ -39,7 +39,8 @@ class PaginaAceptarEcuacion extends StatelessWidget {
                         ),
                       );
                     },
-                    child: const Text('Volver')),
+                    child: const Text('Volver',
+                        style: TextStyle(color: Colors.white))),
                 const SizedBox(height: 20),
                 TextButton(
                     onPressed: () {
@@ -51,7 +52,8 @@ class PaginaAceptarEcuacion extends StatelessWidget {
                         ),
                       );
                     },
-                    child: const Text('Aceptar'))
+                    child: const Text('Aceptar',
+                        style: TextStyle(color: Colors.white))),
               ],
             ),
           ],
