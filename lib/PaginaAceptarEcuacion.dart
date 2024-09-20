@@ -1,5 +1,6 @@
 // ignore: file_names
 import 'package:factorizacion_por_division_sintetica/PaginaCrearEcuacion.dart';
+import 'package:factorizacion_por_division_sintetica/PaginaResultado.dart';
 import 'package:flutter/material.dart';
 import 'package:factorizacion_por_division_sintetica/polinomio.dart';
 
@@ -7,7 +8,6 @@ class PaginaAceptarEcuacion extends StatelessWidget {
   final Polinomio polinomio;
 
   const PaginaAceptarEcuacion({super.key, required this.polinomio});
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -22,7 +22,7 @@ class PaginaAceptarEcuacion extends StatelessWidget {
             ),
             const SizedBox(height: 20),
             const Text(
-              'Resultado de la División Sintética: (papuraíz)',
+              '¿El polinomio es correcto?',
               style: TextStyle(fontSize: 25, color: Colors.white),
             ),
             const SizedBox(height: 20),
@@ -48,7 +48,7 @@ class PaginaAceptarEcuacion extends StatelessWidget {
                         context,
                         MaterialPageRoute(
                           builder: (context) =>
-                              PaginaCrearEcuacion(polinomio: polinomio),
+                              PaginaResultado(polinomio: polinomio),
                         ),
                       );
                     },
@@ -64,12 +64,12 @@ class PaginaAceptarEcuacion extends StatelessWidget {
 
   String _mostrarEcuacion() {
     String ecuacion = '';
-    for (int i = 1; i < polinomio.coeficientes.length; i++) {
+    for (int i = 0; i < polinomio.coeficientes.length; i++) {
       int coeficiente = polinomio.coeficientes[i];
       int exponente = polinomio.grado - i;
 
       if (coeficiente != 0) {
-        if (i > 1 && coeficiente > 0) {
+        if (i > 0 && coeficiente > 0) {
           ecuacion += ' + ';
         } else if (coeficiente < 0) {
           ecuacion += ' - ';
