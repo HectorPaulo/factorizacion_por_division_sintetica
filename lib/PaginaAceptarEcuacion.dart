@@ -66,7 +66,7 @@ class PaginaAceptarEcuacion extends StatelessWidget {
     String ecuacion = '';
     for (int i = 0; i < polinomio.coeficientes.length; i++) {
       double coeficiente = polinomio.coeficientes[i];
-      double exponente = polinomio.grado - i;
+      int exponente = polinomio.grado - i;
 
       if (coeficiente != 0) {
         if (i > 0 && coeficiente > 0) {

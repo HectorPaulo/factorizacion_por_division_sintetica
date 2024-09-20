@@ -1,6 +1,6 @@
 class Polinomio {
-  var coeficientes = [];
-  double grado;
+  List<double> coeficientes;
+  int grado;
   double valorIndependiente;
 
   Polinomio({

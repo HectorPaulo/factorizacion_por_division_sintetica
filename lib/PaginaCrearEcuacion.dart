@@ -17,7 +17,7 @@ class _PaginaCrearEcuacionState extends State<PaginaCrearEcuacion> {
 
   @override
   Widget build(BuildContext context) {
-    final double grado = widget.polinomio.grado;
+    final int grado = widget.polinomio.grado;
     var coeficientes = widget.polinomio.coeficientes;
     double valorIndependiente = widget.polinomio.valorIndependiente;
 
@@ -83,7 +83,7 @@ class _PaginaCrearEcuacionState extends State<PaginaCrearEcuacion> {
                               },
                               onChanged: (value) {
                                 setState(() {
-                                  coeficientes[i] = int.tryParse(value) ?? 0;
+                                  coeficientes[i] = double.tryParse(value) ?? 0;
                                 });
                               },
                             ),
@@ -115,7 +115,9 @@ class _PaginaCrearEcuacionState extends State<PaginaCrearEcuacion> {
                         Polinomio polinomio = Polinomio(
                           grado: grado,
                           coeficientes: coeficientes,
-                          valorIndependiente: valorIndependiente,
+                          valorIndependiente:
+                              double.tryParse(valorIndependiente.toString()) ??
+                                  0.0,
                         );
 
                         Navigator.push(

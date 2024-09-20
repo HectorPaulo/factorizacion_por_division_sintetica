@@ -14,7 +14,7 @@ class PaginaDefinirGradoEcuacion extends StatefulWidget {
 class _PaginaDefinirGradoEcuacionState
     extends State<PaginaDefinirGradoEcuacion> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
-  double _grado = 0;
+  int _grado = 0;
   List<double> _coeficientes = [];
   final double _valorIndependiente = 0;
 
@@ -80,9 +80,9 @@ class _PaginaDefinirGradoEcuacionState
                     },
                     onChanged: (value) {
                       setState(() {
-                        _grado = double.tryParse(value) ?? 0;
+                        _grado = int.tryParse(value) ?? 0;
                         _coeficientes = List<double>.filled(
-                            (_grado + 1) as int, 0); // Inicializar coeficientes
+                            _grado + 1, 0); // Inicializar coeficientes
                       });
                     },
                   ),
