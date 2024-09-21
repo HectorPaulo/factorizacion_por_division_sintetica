@@ -29,15 +29,17 @@ class _PaginaCrearEcuacionState extends State<PaginaCrearEcuacion> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
+              const SizedBox(
+                height: 60,
+              ),
               const Text(
-                'Ingresa los coeficientes del polinomio',
+                'C O E F I C I E N T E S',
                 style: TextStyle(fontSize: 25, color: Colors.white),
               ),
               const SizedBox(height: 20),
               Expanded(
                 child: ListView.builder(
-                  itemCount:
-                      ((grado + 1) as int), // Incluye el término independiente
+                  itemCount: (grado + 1), // Incluye el término independiente
                   itemBuilder: (context, i) {
                     return Padding(
                       padding: const EdgeInsets.symmetric(
@@ -58,7 +60,6 @@ class _PaginaCrearEcuacionState extends State<PaginaCrearEcuacion> {
                           SizedBox(
                             width: 150,
                             child: TextFormField(
-                              initialValue: coeficientes[i].toString(),
                               keyboardType: TextInputType.number,
                               decoration: InputDecoration(
                                 enabledBorder: OutlineInputBorder(
@@ -71,19 +72,39 @@ class _PaginaCrearEcuacionState extends State<PaginaCrearEcuacion> {
                                       color: Colors.deepPurple),
                                   borderRadius: BorderRadius.circular(12),
                                 ),
-                                hintText: 'Ej. 3',
+                                hintText: 'Ej. ${grado - i}',
                                 fillColor: Colors.grey[200],
                                 filled: true,
                               ),
                               validator: (value) {
                                 if (value == null || value.isEmpty) {
-                                  return 'Por favor ingresa el coeficiente';
+                                  ScaffoldMessenger.of(context).showSnackBar(
+                                      const SnackBar(
+                                          content: Text(
+                                              'Por favor ingresa el coeficiente')));
+                                  return '';
+                                }
+                                if (!RegExp(r'^[0-9]+(\.[0-9]+)?$')
+                                    .hasMatch(value)) {
+                                  ScaffoldMessenger.of(context).showSnackBar(
+                                      const SnackBar(
+                                          content: Text(
+                                              'Por favor ingresa un número válido')));
+                                  return '';
+                                }
+                                if (double.parse(value) > 99999) {
+                                  ScaffoldMessenger.of(context).showSnackBar(
+                                      const SnackBar(
+                                          content: Text(
+                                              'El número es demasiado grande')));
+                                  return '';
                                 }
                                 return null;
                               },
                               onChanged: (value) {
                                 setState(() {
-                                  coeficientes[i] = double.tryParse(value) ?? 0;
+                                  coeficientes[i] =
+                                      double.tryParse(value) ?? 0.0;
                                 });
                               },
                             ),
@@ -106,9 +127,16 @@ class _PaginaCrearEcuacionState extends State<PaginaCrearEcuacion> {
                               builder: (context) =>
                                   const PaginaDefinirGradoEcuacion()));
                     },
-                    child: const Text('Volver'),
+                    child: const Text(
+                      'Volver',
+                      style: TextStyle(
+                          fontFamily: 'Arial',
+                          fontSize: 20,
+                          color: Colors.black,
+                          fontWeight: FontWeight.bold),
+                    ),
                   ),
-                  const SizedBox(width: 80),
+                  const SizedBox(width: 200),
                   ElevatedButton(
                     onPressed: () {
                       if (_formKey.currentState!.validate()) {
@@ -119,7 +147,6 @@ class _PaginaCrearEcuacionState extends State<PaginaCrearEcuacion> {
                               double.tryParse(valorIndependiente.toString()) ??
                                   0.0,
                         );
-
                         Navigator.push(
                           context,
                           MaterialPageRoute(
@@ -129,7 +156,14 @@ class _PaginaCrearEcuacionState extends State<PaginaCrearEcuacion> {
                         );
                       }
                     },
-                    child: const Text('Guardar'),
+                    child: const Text(
+                      'Guardar',
+                      style: TextStyle(
+                          fontFamily: 'Arial',
+                          fontSize: 20,
+                          color: Colors.black,
+                          fontWeight: FontWeight.bold),
+                    ),
                   ),
                 ],
               ),

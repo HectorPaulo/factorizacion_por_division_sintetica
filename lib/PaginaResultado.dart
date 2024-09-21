@@ -90,7 +90,7 @@ class PaginaResultado extends StatelessWidget {
   }
 
   String _divisionSintetica() {
-    String ecuacion = _mostrarEcuacion();
+    _mostrarEcuacion();
     bool esRaiz = false;
     double divisorRaiz = 0; // Variable para almacenar el divisor raíz
     List<double> divisores = [];
@@ -116,10 +116,10 @@ class PaginaResultado extends StatelessWidget {
         resultado.add(aux);
       }
 
-      // Si el último elemento de 'resultado' es 0, divisor es una raíz
       if (resultado.last == 0) {
+        // -> Es raíz
         esRaiz = true;
-        divisorRaiz = divisor; // Guardar el divisor raíz
+        divisorRaiz = divisor;
         break;
       }
     }

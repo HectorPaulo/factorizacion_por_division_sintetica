@@ -98,7 +98,7 @@ class PaginaBienvenida extends StatelessWidget {
               child: const Text('Ir al procedimiento'),
             ),
             const SizedBox(height: 60),
-            const Text("Versión 1.0.0", style: TextStyle(color: Colors.white)),
+            const Text("Versión 2.5.0", style: TextStyle(color: Colors.white)),
           ],
         ),
       ),

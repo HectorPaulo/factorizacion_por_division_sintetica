@@ -40,7 +40,15 @@ class PaginaAceptarEcuacion extends StatelessWidget {
                       );
                     },
                     child: const Text('Volver',
-                        style: TextStyle(color: Colors.white))),
+                        style: TextStyle(
+                            color: Colors.white,
+                            fontFamily: 'Arial',
+                            fontWeight: FontWeight.bold,
+                            fontSize: 20))),
+                const Image(
+                  image: AssetImage('assets/shinji.png'),
+                  width: 300,
+                ),
                 const SizedBox(height: 20),
                 TextButton(
                     onPressed: () {
@@ -53,7 +61,11 @@ class PaginaAceptarEcuacion extends StatelessWidget {
                       );
                     },
                     child: const Text('Aceptar',
-                        style: TextStyle(color: Colors.white))),
+                        style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 20,
+                            fontFamily: 'Arial',
+                            fontWeight: FontWeight.bold))),
               ],
             ),
           ],

@@ -8,7 +8,11 @@
 /home/paulo/Documentos/trabajos/creados/flutter/factorizacion_por_division_sintetica/build/linux/x64/debug/bundle/data/flutter_assets/NOTICES.Z
 /home/paulo/Documentos/trabajos/creados/flutter/factorizacion_por_division_sintetica/build/linux/x64/debug/bundle/data/flutter_assets/packages/cupertino_icons/assets/CupertinoIcons.ttf
 /home/paulo/Documentos/trabajos/creados/flutter/factorizacion_por_division_sintetica/build/linux/x64/debug/bundle/data/flutter_assets/AssetManifest.json
-/home/paulo/Documentos/trabajos/creados/flutter/factorizacion_por_division_sintetica/build/linux/x64/debug/bundle/data/flutter_assets/assets/tux.jpg
 /home/paulo/Documentos/trabajos/creados/flutter/factorizacion_por_division_sintetica/build/linux/x64/debug/bundle/data/flutter_assets/assets/LSlogo.png
+/home/paulo/Documentos/trabajos/creados/flutter/factorizacion_por_division_sintetica/build/linux/x64/debug/bundle/data/flutter_assets/assets/monaChina.png
+/home/paulo/Documentos/trabajos/creados/flutter/factorizacion_por_division_sintetica/build/linux/x64/debug/bundle/data/flutter_assets/assets/monaChinaNo.png
+/home/paulo/Documentos/trabajos/creados/flutter/factorizacion_por_division_sintetica/build/linux/x64/debug/bundle/data/flutter_assets/assets/shinji.png
+/home/paulo/Documentos/trabajos/creados/flutter/factorizacion_por_division_sintetica/build/linux/x64/debug/bundle/data/flutter_assets/assets/02.png
+/home/paulo/Documentos/trabajos/creados/flutter/factorizacion_por_division_sintetica/build/linux/x64/debug/bundle/data/flutter_assets/assets/oldMeme.png
 /home/paulo/Documentos/trabajos/creados/flutter/factorizacion_por_division_sintetica/build/linux/x64/debug/bundle/data/flutter_assets/kernel_blob.bin
 /home/paulo/Documentos/trabajos/creados/flutter/factorizacion_por_division_sintetica/build/linux/x64/debug/bundle/data/flutter_assets/fonts/MaterialIcons-Regular.otf

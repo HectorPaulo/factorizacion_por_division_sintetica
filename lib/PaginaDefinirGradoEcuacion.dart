@@ -74,7 +74,18 @@ class _PaginaDefinirGradoEcuacionState
                     ),
                     validator: (value) {
                       if (value == null || value.isEmpty) {
-                        return 'Por favor ingresa el grado';
+                        ScaffoldMessenger.of(context).showSnackBar(
+                            const SnackBar(
+                                content: Text('Por favor ingresa el grado')));
+                        return '';
+                      }
+                      if (!RegExp(r'^[a-zA-Z0-9]*([2-9]|[1-9][0-9])$')
+                          .hasMatch(value)) {
+                        ScaffoldMessenger.of(context).showSnackBar(
+                            const SnackBar(
+                                content: Text(
+                                    'Por favor ingresa un grado válido.')));
+                        return '';
                       }
                       return null;
                     },
@@ -84,6 +95,9 @@ class _PaginaDefinirGradoEcuacionState
                         _coeficientes = List<double>.filled(
                             _grado + 1, 0); // Inicializar coeficientes
                       });
+                    },
+                    onFieldSubmitted: (value) {
+                      _savePolinomio();
                     },
                   ),
                 ),
@@ -101,12 +115,29 @@ class _PaginaDefinirGradoEcuacionState
                         ),
                       );
                     },
-                    child: const Text("Volver"),
+                    child: const Text(
+                      "Volver",
+                      style: TextStyle(
+                          fontSize: 20,
+                          color: Colors.black,
+                          fontWeight: FontWeight.bold),
+                    ),
                   ),
-                  const SizedBox(width: 80),
+                  const Center(
+                    child: Image(
+                      image: AssetImage('assets/02.png'),
+                      width: 300,
+                    ),
+                  ),
                   ElevatedButton(
                     onPressed: _savePolinomio,
-                    child: const Text('Siguiente'),
+                    child: const Text(
+                      'Siguiente',
+                      style: TextStyle(
+                          fontSize: 20,
+                          color: Colors.black,
+                          fontWeight: FontWeight.bold),
+                    ),
                   ),
                 ],
               ),
