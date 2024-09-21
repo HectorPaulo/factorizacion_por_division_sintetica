@@ -40,8 +40,8 @@ class PaginaResultado extends StatelessWidget {
             Row(
               children: [
                 const SizedBox(height: 20),
-                Image(image: AssetImage('assets/PedritoSola.gif'), width: 200),
-                SizedBox(width: 50),
+                Image(image: AssetImage('assets/hongoImbecil.gif'), width: 200),
+                SizedBox(width: 100),
                 Text(
                   _divisionSintetica(),
                   style: const TextStyle(fontSize: 18, color: Colors.white),
