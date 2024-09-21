@@ -37,12 +37,18 @@ class PaginaResultado extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            const SizedBox(height: 20),
-            Text(
-              _divisionSintetica(),
-              style: const TextStyle(fontSize: 18, color: Colors.white),
+            Row(
+              children: [
+                const SizedBox(height: 20),
+                Image(image: AssetImage('assets/PedritoSola.gif'), width: 200),
+                SizedBox(width: 50),
+                Text(
+                  _divisionSintetica(),
+                  style: const TextStyle(fontSize: 18, color: Colors.white),
+                ),
+                const SizedBox(height: 20),
+              ],
             ),
-            const SizedBox(height: 20),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [

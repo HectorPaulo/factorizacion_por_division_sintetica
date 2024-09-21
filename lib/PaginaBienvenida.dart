@@ -95,7 +95,7 @@ class PaginaBienvenida extends StatelessWidget {
               ),
             ),
             const SizedBox(height: 60),
-            const Text("1.9.6 alpha", style: TextStyle(color: Colors.grey)),
+            const Text("1.7.0 alpha", style: TextStyle(color: Colors.grey)),
           ],
         ),
       ),
