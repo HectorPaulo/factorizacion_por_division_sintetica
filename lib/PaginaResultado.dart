@@ -91,71 +91,68 @@ class PaginaResultado extends StatelessWidget {
     );
   }
 
-  String _mostrarEcuacion() {
-    String ecuacion = '';
-    for (int i = 0; i < polinomio.coeficientes.length; i++) {
-      double coeficiente = polinomio.coeficientes[i];
-      int exponente = polinomio.grado - i;
-
-      if (coeficiente != 0) {
-        if (i > 0 && coeficiente > 0) {
-          ecuacion += ' + ';
-        } else if (coeficiente < 0) {
-          ecuacion += ' - ';
-          coeficiente = coeficiente.abs();
-        }
-
-        if (exponente > 1) {
-          ecuacion += '${coeficiente}x^$exponente';
-        } else if (exponente == 1) {
-          ecuacion += '${coeficiente}x';
-        } else {
-          ecuacion += '$coeficiente';
-        }
-      }
-    }
-    return ecuacion;
-  }
-
   String _divisionSintetica() {
-    _mostrarEcuacion();
-    bool esRaiz = false;
-    double divisorRaiz = 0; // Variable para almacenar el divisor raíz
-    List<double> divisores = [];
-    List<double> resultado = [];
-    double terminoIndependiente = polinomio.coeficientes.last;
     double coeficienteLider = polinomio.coeficientes.first;
+    double terminoIndependiente = polinomio.coeficientes.last;
+    List<double> divisores = []; // Lista de divisores posibles
+    List<double> raices = []; // Lista de raíces que funcionan
+    List<Map<String, dynamic>> iteraciones =
+        []; // Para registrar las iteraciones
+    int n = polinomio.coeficientes.length - 1; // Grado del polinomio
 
-    // Calcular los divisores del término independiente y del coeficiente líder
-    for (double i = 1; i <= terminoIndependiente.abs(); i++) {
+    // Encontrar los posibles divisores del término independiente
+    for (int i = 1; i <= terminoIndependiente.abs(); i++) {
       if (terminoIndependiente % i == 0) {
-        divisores.add(i / coeficienteLider);
-        divisores.add(-i / coeficienteLider);
+        divisores.add(i / coeficienteLider); // Divisor positivo
+        divisores.add(-i / coeficienteLider); // Divisor negativo
       }
     }
 
-    // Probar cada divisor con división sintética
+    // Probar cada divisor con la división sintética
     for (double divisor in divisores) {
-      resultado.clear();
-      resultado.add(polinomio.coeficientes[0]);
+      List<double> resultado = [
+        polinomio.coeficientes[0]
+      ]; // Iniciar con el coeficiente líder
+      List<double> pasosIteracion = [
+        polinomio.coeficientes[0]
+      ]; // Guardar el primer paso
 
-      for (int j = 1; j < polinomio.coeficientes.length; j++) {
-        double aux = polinomio.coeficientes[j] + resultado[j - 1] * divisor;
+      // Realizar la división sintética
+      for (int j = 1; j <= n; j++) {
+        double aux = polinomio.coeficientes[j] + (resultado[j - 1] * divisor);
         resultado.add(aux);
+        pasosIteracion.add(aux); // Guardar el paso en cada iteración
       }
 
+      // Registrar la iteración actual
+      iteraciones.add({
+        'divisor': divisor,
+        'resultados': List.from(pasosIteracion), // Copia de los pasos
+      });
+
+      // Verificar si el último valor es cero, lo que indica que es una raíz
       if (resultado.last == 0) {
-        // -> Es raíz
-        esRaiz = true;
-        divisorRaiz = divisor;
-        break;
+        raices.add(divisor); // Guardar la raíz
       }
     }
 
-    if (esRaiz) {
-      return "Raíz encontrada: $divisorRaiz \nResultados: ${resultado.toString()}";
+    // Formatear la salida para incluir toda la información
+    StringBuffer salida = StringBuffer();
+    salida.writeln("Divisores probados: $divisores");
+
+    if (raices.isNotEmpty) {
+      salida.writeln("Raíces encontradas: $raices");
     } else {
-      return "No se encontró una raíz exacta.";
+      salida.writeln("No se encontró una raíz exacta.");
     }
+
+    // Mostrar las iteraciones de la división sintética
+    salida.writeln("Iteraciones de cada división sintética:");
+    for (var iteracion in iteraciones) {
+      salida.writeln(
+          "Divisor: ${iteracion['divisor']}, Resultados: ${iteracion['resultados']}");
+    }
+
+    return salida.toString();
   }
 }

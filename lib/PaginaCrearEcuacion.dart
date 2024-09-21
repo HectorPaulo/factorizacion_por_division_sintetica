@@ -91,7 +91,7 @@ class _PaginaCrearEcuacionState extends State<PaginaCrearEcuacion> {
                                           )));
                                   return '';
                                 }
-                                if (!RegExp(r'^[0-9]+(\.[0-9]+)?$')
+                                if (!RegExp(r'^-?[0-9]+(\.[0-9]+)?$')
                                     .hasMatch(value)) {
                                   ScaffoldMessenger.of(context)
                                       .showSnackBar(const SnackBar(
