@@ -88,7 +88,6 @@ class PaginaBienvenida extends StatelessWidget {
                 backgroundColor: Colors.blue,
               ),
               onPressed: () {
-                // Navegación a la segunda página usando Navigator.push()
                 Navigator.push(
                   context,
                   MaterialPageRoute(
@@ -98,7 +97,7 @@ class PaginaBienvenida extends StatelessWidget {
               child: const Text('Ir al procedimiento'),
             ),
             const SizedBox(height: 60),
-            const Text("Versión 2.5.0", style: TextStyle(color: Colors.white)),
+            const Text("Versión 2.5.1", style: TextStyle(color: Colors.white)),
           ],
         ),
       ),

@@ -11,6 +11,7 @@
 /home/paulo/Documentos/trabajos/creados/flutter/factorizacion_por_division_sintetica/build/linux/x64/debug/bundle/data/flutter_assets/assets/LSlogo.png
 /home/paulo/Documentos/trabajos/creados/flutter/factorizacion_por_division_sintetica/build/linux/x64/debug/bundle/data/flutter_assets/assets/monaChina.png
 /home/paulo/Documentos/trabajos/creados/flutter/factorizacion_por_division_sintetica/build/linux/x64/debug/bundle/data/flutter_assets/assets/monaChinaNo.png
+/home/paulo/Documentos/trabajos/creados/flutter/factorizacion_por_division_sintetica/build/linux/x64/debug/bundle/data/flutter_assets/assets/4_IMAGOTIPO_LASALLE_OAXACA_CALADO-SIN%20FONDO.png
 /home/paulo/Documentos/trabajos/creados/flutter/factorizacion_por_division_sintetica/build/linux/x64/debug/bundle/data/flutter_assets/assets/shinji.png
 /home/paulo/Documentos/trabajos/creados/flutter/factorizacion_por_division_sintetica/build/linux/x64/debug/bundle/data/flutter_assets/assets/02.png
 /home/paulo/Documentos/trabajos/creados/flutter/factorizacion_por_division_sintetica/build/linux/x64/debug/bundle/data/flutter_assets/assets/oldMeme.png

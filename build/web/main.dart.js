@@ -8750,11 +8750,12 @@ Ru:function Ru(a){this.a=a},
 av7(){return new A.uO(new A.YK(),A.z(t.K,t.Qu))},
 a6v:function a6v(a,b){this.a=a
 this.b=b},
-vz:function vz(a,b,c,d){var _=this
+vz:function vz(a,b,c,d,e){var _=this
 _.e=a
 _.cx=b
 _.db=c
-_.a=d},
+_.R8=d
+_.a=e},
 YK:function YK(){},
 a0b:function a0b(){},
 zA:function zA(){this.d=$
@@ -34663,7 +34664,7 @@ $1(a){return new A.kK(this.a.c,null)},
 $S:69}
 A.FO.prototype={
 L(a){var s=null
-return new A.vz(B.r5,"Factorizaci\xf3n por Divisi\xf3n Sint\xe9tica",A.qp(s,A.ak_(B.ac,s,s,B.qS),!0),s)}}
+return new A.vz(B.r5,"Factorizaci\xf3n por Divisi\xf3n Sint\xe9tica",A.qp(s,A.ak_(B.ac,s,s,B.qS),!0),!1,s)}}
 A.Go.prototype={}
 A.fe.prototype={
 G(){return"AnimationStatus."+this.b},
@@ -77815,7 +77816,7 @@ B.x3=new A.i(!0,B.n,null,null,null,null,20,B.bc,null,null,null,null,null,null,nu
 B.Pk=new A.bS("Siguiente",null,B.x3,null,null,null,null,null,null)
 B.Pm=new A.bS("C O E F I C I E N T E S",null,B.ei,null,null,null,null,null,null)
 B.h6=new A.i(!0,B.j,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null)
-B.Pn=new A.bS("Versi\xf3n 2.5.0",null,B.h6,null,null,null,null,null,null)
+B.Pn=new A.bS("Versi\xf3n 2.5.1",null,B.h6,null,null,null,null,null,null)
 B.Po=new A.bS("\xbfEl polinomio es correcto?",null,B.ei,null,null,null,null,null,null)
 B.x9=new A.i(!0,B.j,null,"Arial",null,null,20,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null)
 B.Pp=new A.bS("H\xe9ctor Paulo ",null,B.x9,null,null,null,null,null,null)
