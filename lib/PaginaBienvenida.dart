@@ -54,15 +54,6 @@ class PaginaBienvenida extends StatelessWidget {
                 fontFamily: 'Arial',
               ),
             ),
-            // const SizedBox(height: 20),
-            // const Text(
-            //   "Diego Sosa Ramírez",
-            //   style: TextStyle(
-            //     color: Colors.white,
-            //     fontSize: 20,
-            //     fontFamily: 'Arial',
-            //   ),
-            // ),
             const SizedBox(height: 40),
             const Text(
               "Factorización por Método de División Sintética",
@@ -97,7 +88,7 @@ class PaginaBienvenida extends StatelessWidget {
               child: const Text('Ir al procedimiento'),
             ),
             const SizedBox(height: 60),
-            const Text("Versión 2.5.1", style: TextStyle(color: Colors.white)),
+            const Text("Versión 2.5.2", style: TextStyle(color: Colors.white)),
           ],
         ),
       ),

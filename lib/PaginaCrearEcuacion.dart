@@ -20,7 +20,6 @@ class _PaginaCrearEcuacionState extends State<PaginaCrearEcuacion> {
     final int grado = widget.polinomio.grado;
     var coeficientes = widget.polinomio.coeficientes;
     double valorIndependiente = widget.polinomio.valorIndependiente;
-
     return Scaffold(
       backgroundColor: Colors.black,
       body: Center(
@@ -78,25 +77,49 @@ class _PaginaCrearEcuacionState extends State<PaginaCrearEcuacion> {
                               ),
                               validator: (value) {
                                 if (value == null || value.isEmpty) {
-                                  ScaffoldMessenger.of(context).showSnackBar(
-                                      const SnackBar(
+                                  ScaffoldMessenger.of(context)
+                                      .showSnackBar(const SnackBar(
+                                          backgroundColor: Colors.red,
+                                          behavior: SnackBarBehavior.floating,
+                                          margin: const EdgeInsets.all(200),
                                           content: Text(
-                                              'Por favor ingresa el coeficiente')));
+                                            'Por favor ingresa el coeficiente',
+                                            style: TextStyle(
+                                                color: Colors.white,
+                                                fontSize: 20,
+                                                fontWeight: FontWeight.bold),
+                                          )));
                                   return '';
                                 }
                                 if (!RegExp(r'^[0-9]+(\.[0-9]+)?$')
                                     .hasMatch(value)) {
-                                  ScaffoldMessenger.of(context).showSnackBar(
-                                      const SnackBar(
+                                  ScaffoldMessenger.of(context)
+                                      .showSnackBar(const SnackBar(
+                                          backgroundColor: Colors.red,
+                                          behavior: SnackBarBehavior.floating,
+                                          margin: const EdgeInsets.all(200),
                                           content: Text(
-                                              'Por favor ingresa un número válido')));
+                                            'Por favor ingresa un número válido',
+                                            style: TextStyle(
+                                                color: Colors.white,
+                                                fontSize: 20,
+                                                fontWeight: FontWeight.bold),
+                                          )));
                                   return '';
                                 }
                                 if (double.parse(value) > 99999) {
-                                  ScaffoldMessenger.of(context).showSnackBar(
-                                      const SnackBar(
+                                  ScaffoldMessenger.of(context)
+                                      .showSnackBar(const SnackBar(
+                                          backgroundColor: Colors.red,
+                                          behavior: SnackBarBehavior.floating,
+                                          margin: const EdgeInsets.all(200),
                                           content: Text(
-                                              'El número es demasiado grande')));
+                                            'El número es demasiado grande',
+                                            style: TextStyle(
+                                                color: Colors.white,
+                                                fontSize: 20,
+                                                fontWeight: FontWeight.bold),
+                                          )));
                                   return '';
                                 }
                                 return null;

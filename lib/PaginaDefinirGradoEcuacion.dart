@@ -5,7 +5,6 @@ import 'PaginaBienvenida.dart';
 
 class PaginaDefinirGradoEcuacion extends StatefulWidget {
   const PaginaDefinirGradoEcuacion({super.key});
-
   @override
   State<PaginaDefinirGradoEcuacion> createState() =>
       _PaginaDefinirGradoEcuacionState();
@@ -17,6 +16,7 @@ class _PaginaDefinirGradoEcuacionState
   int _grado = 0;
   List<double> _coeficientes = [];
   final double _valorIndependiente = 0;
+  var img = 'assets/02.png';
 
   void _savePolinomio() {
     if (_formKey.currentState!.validate()) {
@@ -74,17 +74,40 @@ class _PaginaDefinirGradoEcuacionState
                     ),
                     validator: (value) {
                       if (value == null || value.isEmpty) {
-                        ScaffoldMessenger.of(context).showSnackBar(
-                            const SnackBar(
-                                content: Text('Por favor ingresa el grado')));
+                        setState(() {
+                          img = 'assets/monaChinaNo.png';
+                        });
+                        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                          backgroundColor: Colors.red,
+                          behavior: SnackBarBehavior.floating,
+                          margin: const EdgeInsets.all(100),
+                          content: Text(
+                            'Por favor ingresa el grado',
+                            style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 20,
+                                fontWeight: FontWeight.bold),
+                          ),
+                        ));
                         return '';
                       }
                       if (!RegExp(r'^[a-zA-Z0-9]*([2-9]|[1-9][0-9])$')
                           .hasMatch(value)) {
-                        ScaffoldMessenger.of(context).showSnackBar(
-                            const SnackBar(
+                        setState(() {
+                          img = 'assets/monaChinaNo.png';
+                        });
+                        ScaffoldMessenger.of(context)
+                            .showSnackBar(const SnackBar(
+                                backgroundColor: Colors.red,
+                                behavior: SnackBarBehavior.floating,
+                                margin: const EdgeInsets.all(100),
                                 content: Text(
-                                    'Por favor ingresa un grado válido.')));
+                                  'Por favor ingresa un grado válido.',
+                                  style: TextStyle(
+                                      color: Colors.white,
+                                      fontSize: 20,
+                                      fontWeight: FontWeight.bold),
+                                )));
                         return '';
                       }
                       return null;
@@ -92,8 +115,7 @@ class _PaginaDefinirGradoEcuacionState
                     onChanged: (value) {
                       setState(() {
                         _grado = int.tryParse(value) ?? 0;
-                        _coeficientes = List<double>.filled(
-                            _grado + 1, 0); // Inicializar coeficientes
+                        _coeficientes = List<double>.filled(_grado + 1, 0);
                       });
                     },
                     onFieldSubmitted: (value) {
@@ -123,9 +145,9 @@ class _PaginaDefinirGradoEcuacionState
                           fontWeight: FontWeight.bold),
                     ),
                   ),
-                  const Center(
+                  Center(
                     child: Image(
-                      image: AssetImage('assets/02.png'),
+                      image: AssetImage(img),
                       width: 300,
                     ),
                   ),
