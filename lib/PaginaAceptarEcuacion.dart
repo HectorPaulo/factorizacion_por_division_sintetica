@@ -30,6 +30,11 @@ class PaginaAceptarEcuacion extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 TextButton(
+                    style: TextButton.styleFrom(
+                      foregroundColor: Colors.white,
+                      padding: const EdgeInsets.all(16.0),
+                      backgroundColor: Color.fromRGBO(225, 28, 28, 0.98),
+                    ),
                     onPressed: () {
                       Navigator.push(
                         context,
@@ -51,6 +56,11 @@ class PaginaAceptarEcuacion extends StatelessWidget {
                 ),
                 const SizedBox(height: 20),
                 TextButton(
+                    style: TextButton.styleFrom(
+                      foregroundColor: Colors.white,
+                      padding: const EdgeInsets.all(16.0),
+                      backgroundColor: Colors.white,
+                    ),
                     onPressed: () {
                       Navigator.push(
                         context,
@@ -62,7 +72,7 @@ class PaginaAceptarEcuacion extends StatelessWidget {
                     },
                     child: const Text('Aceptar',
                         style: TextStyle(
-                            color: Colors.white,
+                            color: Colors.black,
                             fontSize: 20,
                             fontFamily: 'Arial',
                             fontWeight: FontWeight.bold))),

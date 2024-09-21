@@ -76,7 +76,7 @@ class PaginaBienvenida extends StatelessWidget {
               style: TextButton.styleFrom(
                 foregroundColor: Colors.white,
                 padding: const EdgeInsets.all(16.0),
-                backgroundColor: Colors.blue,
+                backgroundColor: Color.fromRGBO(225, 28, 28, 0.98),
               ),
               onPressed: () {
                 Navigator.push(
@@ -85,7 +85,14 @@ class PaginaBienvenida extends StatelessWidget {
                       builder: (context) => const PaginaDefinirGradoEcuacion()),
                 );
               },
-              child: const Text('Ir al procedimiento'),
+              child: const Text(
+                'Ir al procedimiento',
+                style: TextStyle(
+                    color: Colors.white,
+                    fontFamily: 'Arial',
+                    fontSize: 15,
+                    fontWeight: FontWeight.bold),
+              ),
             ),
             const SizedBox(height: 60),
             const Text("Versión 2.5.2", style: TextStyle(color: Colors.white)),

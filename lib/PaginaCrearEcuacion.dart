@@ -67,8 +67,8 @@ class _PaginaCrearEcuacionState extends State<PaginaCrearEcuacion> {
                                   borderRadius: BorderRadius.circular(12),
                                 ),
                                 focusedBorder: OutlineInputBorder(
-                                  borderSide: const BorderSide(
-                                      color: Colors.deepPurple),
+                                  borderSide:
+                                      const BorderSide(color: Colors.red),
                                   borderRadius: BorderRadius.circular(12),
                                 ),
                                 hintText: 'Ej. ${grado - i}',
@@ -143,6 +143,11 @@ class _PaginaCrearEcuacionState extends State<PaginaCrearEcuacion> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   ElevatedButton(
+                    style: TextButton.styleFrom(
+                      padding: const EdgeInsets.all(16.0),
+                      backgroundColor: Color.fromRGBO(225, 28, 28, 0.98),
+                      shadowColor: Colors.white,
+                    ),
                     onPressed: () {
                       Navigator.push(
                           context,
@@ -155,12 +160,17 @@ class _PaginaCrearEcuacionState extends State<PaginaCrearEcuacion> {
                       style: TextStyle(
                           fontFamily: 'Arial',
                           fontSize: 20,
-                          color: Colors.black,
+                          color: Colors.white,
                           fontWeight: FontWeight.bold),
                     ),
                   ),
-                  const SizedBox(width: 200),
+                  const SizedBox(width: 400),
                   ElevatedButton(
+                    style: TextButton.styleFrom(
+                      foregroundColor: Colors.white,
+                      padding: const EdgeInsets.all(16.0),
+                      backgroundColor: Colors.white,
+                    ),
                     onPressed: () {
                       if (_formKey.currentState!.validate()) {
                         Polinomio polinomio = Polinomio(

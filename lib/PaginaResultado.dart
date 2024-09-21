@@ -1,4 +1,5 @@
 import 'package:factorizacion_por_division_sintetica/PaginaAceptarEcuacion.dart';
+import 'package:factorizacion_por_division_sintetica/PaginaBienvenida.dart';
 import 'package:factorizacion_por_division_sintetica/polinomio.dart';
 import 'package:flutter/material.dart';
 
@@ -10,15 +11,32 @@ class PaginaResultado extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        foregroundColor: Colors.white,
+        backgroundColor: Colors.red,
+        title: const Text('S O L U C I O N E S',
+            style: TextStyle(
+                fontSize: 30,
+                fontFamily: 'Arial',
+                fontWeight: FontWeight.bold)),
+        centerTitle: true,
+        actions: [
+          IconButton(
+            icon: const Icon(Icons.home),
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => PaginaBienvenida()),
+              );
+            },
+          ),
+        ],
+      ),
       backgroundColor: Colors.black,
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            const Text(
-              'Soluciones',
-              style: TextStyle(fontSize: 25, color: Colors.white),
-            ),
             const SizedBox(height: 20),
             Text(
               _divisionSintetica(),
@@ -29,6 +47,11 @@ class PaginaResultado extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 TextButton(
+                  style: TextButton.styleFrom(
+                    foregroundColor: Colors.white,
+                    padding: const EdgeInsets.all(16.0),
+                    backgroundColor: Color.fromRGBO(225, 28, 28, 0.98),
+                  ),
                   onPressed: () {
                     Navigator.push(
                       context,
@@ -43,6 +66,11 @@ class PaginaResultado extends StatelessWidget {
                 ),
                 const SizedBox(width: 20),
                 TextButton(
+                  style: TextButton.styleFrom(
+                    foregroundColor: Colors.white,
+                    padding: const EdgeInsets.all(16.0),
+                    backgroundColor: Colors.white,
+                  ),
                   onPressed: () {
                     Navigator.push(
                       context,
@@ -53,7 +81,7 @@ class PaginaResultado extends StatelessWidget {
                     );
                   },
                   child: const Text('Aceptar',
-                      style: TextStyle(color: Colors.white)),
+                      style: TextStyle(color: Colors.black)),
                 ),
               ],
             ),

@@ -65,7 +65,7 @@ class _PaginaDefinirGradoEcuacionState
                         borderRadius: BorderRadius.circular(12),
                       ),
                       focusedBorder: OutlineInputBorder(
-                        borderSide: const BorderSide(color: Colors.deepPurple),
+                        borderSide: const BorderSide(color: Colors.red),
                         borderRadius: BorderRadius.circular(12),
                       ),
                       hintText: 'Ej. 3',
@@ -129,6 +129,11 @@ class _PaginaDefinirGradoEcuacionState
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   ElevatedButton(
+                    style: TextButton.styleFrom(
+                      padding: const EdgeInsets.all(16.0),
+                      backgroundColor: Color.fromRGBO(225, 28, 28, 0.98),
+                      shadowColor: Colors.white,
+                    ),
                     onPressed: () {
                       Navigator.push(
                         context,
@@ -141,7 +146,7 @@ class _PaginaDefinirGradoEcuacionState
                       "Volver",
                       style: TextStyle(
                           fontSize: 20,
-                          color: Colors.black,
+                          color: Colors.white,
                           fontWeight: FontWeight.bold),
                     ),
                   ),
@@ -152,6 +157,12 @@ class _PaginaDefinirGradoEcuacionState
                     ),
                   ),
                   ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                      foregroundColor: Colors.white,
+                      padding: const EdgeInsets.all(16.0),
+                      backgroundColor: Colors.white,
+                      overlayColor: Colors.red,
+                    ),
                     onPressed: _savePolinomio,
                     child: const Text(
                       'Siguiente',
