@@ -38,7 +38,7 @@ class PaginaBienvenida extends StatelessWidget {
             ),
             const SizedBox(height: 40),
             const Text(
-              "Héctor Paulo ",
+              "Héctor Adrián Paulo Vázquez",
               style: TextStyle(
                 color: Colors.white,
                 fontSize: 20,
@@ -95,7 +95,7 @@ class PaginaBienvenida extends StatelessWidget {
               ),
             ),
             const SizedBox(height: 60),
-            const Text("Versión 2.5.3", style: TextStyle(color: Colors.white)),
+            const Text("1.9.6 alpha", style: TextStyle(color: Colors.grey)),
           ],
         ),
       ),
