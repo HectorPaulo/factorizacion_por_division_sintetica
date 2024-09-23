@@ -14,6 +14,8 @@
 /home/paulo/Documentos/trabajos/creados/flutter/factorizacion_por_division_sintetica/build/linux/x64/debug/bundle/data/flutter_assets/assets/4_IMAGOTIPO_LASALLE_OAXACA_CALADO-SIN%20FONDO.png
 /home/paulo/Documentos/trabajos/creados/flutter/factorizacion_por_division_sintetica/build/linux/x64/debug/bundle/data/flutter_assets/assets/shinji.png
 /home/paulo/Documentos/trabajos/creados/flutter/factorizacion_por_division_sintetica/build/linux/x64/debug/bundle/data/flutter_assets/assets/02.png
+/home/paulo/Documentos/trabajos/creados/flutter/factorizacion_por_division_sintetica/build/linux/x64/debug/bundle/data/flutter_assets/assets/hongoImbecil.gif
+/home/paulo/Documentos/trabajos/creados/flutter/factorizacion_por_division_sintetica/build/linux/x64/debug/bundle/data/flutter_assets/assets/PedritoSola.gif
 /home/paulo/Documentos/trabajos/creados/flutter/factorizacion_por_division_sintetica/build/linux/x64/debug/bundle/data/flutter_assets/assets/oldMeme.png
 /home/paulo/Documentos/trabajos/creados/flutter/factorizacion_por_division_sintetica/build/linux/x64/debug/bundle/data/flutter_assets/assets/gatoGod.gif
 /home/paulo/Documentos/trabajos/creados/flutter/factorizacion_por_division_sintetica/build/linux/x64/debug/bundle/data/flutter_assets/kernel_blob.bin

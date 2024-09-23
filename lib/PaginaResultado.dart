@@ -1,95 +1,62 @@
-import 'package:factorizacion_por_division_sintetica/PaginaAceptarEcuacion.dart';
-import 'package:factorizacion_por_division_sintetica/PaginaBienvenida.dart';
-import 'package:factorizacion_por_division_sintetica/polinomio.dart';
 import 'package:flutter/material.dart';
+import 'package:factorizacion_por_division_sintetica/polinomio.dart';
 
-class PaginaResultado extends StatelessWidget {
+class PaginaResultado extends StatefulWidget {
   final Polinomio polinomio;
 
   const PaginaResultado({super.key, required this.polinomio});
+
+  @override
+  _PaginaResultadoState createState() => _PaginaResultadoState();
+}
+
+class _PaginaResultadoState extends State<PaginaResultado> {
+  String resultadoDivision = ''; // Variable para almacenar el resultado final
+
+  @override
+  void initState() {
+    super.initState();
+    _calcularDivisionSintetica(); // Calcular la división sintética al cargar la página
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         foregroundColor: Colors.white,
-        backgroundColor: Colors.red,
-        title: const Text('S O L U C I O N E S',
-            style: TextStyle(
-                fontSize: 30,
-                fontFamily: 'Arial',
-                fontWeight: FontWeight.bold)),
+        backgroundColor: const Color.fromARGB(255, 92, 13, 8),
+        title: const Text(
+          'S O L U C I O N E S',
+          style: TextStyle(
+              fontSize: 30, fontFamily: 'Arial', fontWeight: FontWeight.bold),
+        ),
         centerTitle: true,
-        actions: [
-          IconButton(
-            icon: const Icon(Icons.home),
-            onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => PaginaBienvenida()),
-              );
-            },
-          ),
-        ],
       ),
       backgroundColor: Colors.black,
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Row(
-              children: [
-                const SizedBox(height: 20),
-                Image(image: AssetImage('assets/hongoImbecil.gif'), width: 200),
-                SizedBox(width: 100),
-                Text(
-                  _divisionSintetica(),
-                  style: const TextStyle(fontSize: 18, color: Colors.white),
-                ),
-                const SizedBox(height: 20),
-              ],
+            const SizedBox(height: 20),
+            Text(
+              _mostrarEcuacion(),
+              style: const TextStyle(fontSize: 18, color: Colors.white),
             ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                TextButton(
-                  style: TextButton.styleFrom(
-                    foregroundColor: Colors.white,
-                    padding: const EdgeInsets.all(16.0),
-                    backgroundColor: Color.fromRGBO(225, 28, 28, 0.98),
-                  ),
-                  onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) =>
-                            PaginaAceptarEcuacion(polinomio: polinomio),
-                      ),
-                    );
-                  },
-                  child: const Text('Volver',
-                      style: TextStyle(color: Colors.white)),
-                ),
-                const SizedBox(width: 20),
-                TextButton(
-                  style: TextButton.styleFrom(
-                    foregroundColor: Colors.white,
-                    padding: const EdgeInsets.all(16.0),
-                    backgroundColor: Colors.white,
-                  ),
-                  onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) =>
-                            PaginaAceptarEcuacion(polinomio: polinomio),
-                      ),
-                    );
-                  },
-                  child: const Text('Aceptar',
-                      style: TextStyle(color: Colors.black)),
-                ),
-              ],
+            const SizedBox(height: 20),
+            // Mostrar el resultado de la división sintética
+            Text(
+              resultadoDivision,
+              style: const TextStyle(fontSize: 18, color: Colors.white),
+              textAlign: TextAlign.center,
+            ),
+            const SizedBox(height: 20),
+            ElevatedButton(
+              onPressed: () {
+                Navigator.pop(context);
+              },
+              child:
+                  const Text('Volver', style: TextStyle(color: Colors.white)),
+              style: ElevatedButton.styleFrom(backgroundColor: Colors.red),
             ),
           ],
         ),
@@ -97,68 +64,101 @@ class PaginaResultado extends StatelessWidget {
     );
   }
 
-  String _divisionSintetica() {
-    double coeficienteLider = polinomio.coeficientes.first;
-    double terminoIndependiente = polinomio.coeficientes.last;
-    List<double> divisores = []; // Lista de divisores posibles
-    List<double> raices = []; // Lista de raíces que funcionan
-    List<Map<String, dynamic>> iteraciones =
-        []; // Para registrar las iteraciones
-    int n = polinomio.coeficientes.length - 1; // Grado del polinomio
+  String _mostrarEcuacion() {
+    String ecuacion = '';
+    for (int i = 0; i < widget.polinomio.coeficientes.length; i++) {
+      double coeficiente = widget.polinomio.coeficientes[i];
+      int exponente = widget.polinomio.grado - i;
 
-    // Encontrar los posibles divisores del término independiente
-    for (int i = 1; i <= terminoIndependiente.abs(); i++) {
-      if (terminoIndependiente % i == 0) {
-        divisores.add(i / coeficienteLider); // Divisor positivo
-        divisores.add(-i / coeficienteLider); // Divisor negativo
+      if (coeficiente != 0) {
+        if (i > 0 && coeficiente > 0) {
+          ecuacion += ' + ';
+        } else if (coeficiente < 0) {
+          ecuacion += ' - ';
+          coeficiente = coeficiente.abs();
+        }
+
+        if (exponente > 1) {
+          ecuacion += '${coeficiente}x^$exponente';
+        } else if (exponente == 1) {
+          ecuacion += '${coeficiente}x';
+        } else {
+          ecuacion += '$coeficiente';
+        }
+      }
+    }
+    return ecuacion;
+  }
+
+  void _calcularDivisionSintetica() {
+    List<double> coeficientes = widget.polinomio.coeficientes;
+    double valorIndependiente = widget.polinomio.coeficientes.last;
+    List<int> divisoresPositivos = [];
+    List<int> divisoresNegativos = [];
+    List<double> resultados = [];
+    List<int> raices = [];
+
+    print("Coeficientes: $coeficientes");
+    print("Valor independiente: ${valorIndependiente}");
+
+    // Verificar divisores positivos de valorIndependiente
+    for (int i = 1; i <= valorIndependiente.abs(); i++) {
+      if (valorIndependiente % i == 0) {
+        divisoresPositivos.add(i);
       }
     }
 
-    // Probar cada divisor con la división sintética
-    for (double divisor in divisores) {
-      List<double> resultado = [
-        polinomio.coeficientes[0]
-      ]; // Iniciar con el coeficiente líder
-      List<double> pasosIteracion = [
-        polinomio.coeficientes[0]
-      ]; // Guardar el primer paso
-
-      // Realizar la división sintética
-      for (int j = 1; j <= n; j++) {
-        double aux = polinomio.coeficientes[j] + (resultado[j - 1] * divisor);
-        resultado.add(aux);
-        pasosIteracion.add(aux); // Guardar el paso en cada iteración
-      }
-
-      // Registrar la iteración actual
-      iteraciones.add({
-        'divisor': divisor,
-        'resultados': List.from(pasosIteracion), // Copia de los pasos
-      });
-
-      // Verificar si el último valor es cero, lo que indica que es una raíz
-      if (resultado.last == 0) {
-        raices.add(divisor); // Guardar la raíz
+    // Verificar divisores negativos de valorIndependiente
+    for (int i = 1; i <= valorIndependiente.abs(); i++) {
+      if (valorIndependiente % i == 0) {
+        divisoresNegativos.add(-i);
       }
     }
 
-    // Formatear la salida para incluir toda la información
-    StringBuffer salida = StringBuffer();
-    salida.writeln("Divisores probados: $divisores");
+    // Simular la división sintética para divisores positivos
+    for (var divisor in divisoresPositivos) {
+      _procesarDivisionSintetica(coeficientes, divisor, resultados, raices);
+    }
 
-    if (raices.isNotEmpty) {
-      salida.writeln("Raíces encontradas: $raices");
+    // Simular la división sintética para divisores negativos
+    for (var divisor in divisoresNegativos) {
+      _procesarDivisionSintetica(coeficientes, divisor, resultados, raices);
+    }
+
+    // Mostrar los resultados en la interfaz
+    setState(() {
+      resultadoDivision = "Valor independiente: ${valorIndependiente}\n\n"
+          "Coeficientes: ${coeficientes}\n\n"
+          "Raíces: $raices\n\n"
+          "Resultados: $resultados";
+    });
+  }
+
+  void _procesarDivisionSintetica(List<double> coeficientes, int divisor,
+      List<double> resultados, List<int> raices) {
+    print("Probando el divisor: $divisor");
+
+    List<double> fila1 = [
+      coeficientes[0]
+    ]; // Inicializa la primera fila con el primer coeficiente
+    for (int j = 1; j < coeficientes.length; j++) {
+      double valorFila2 =
+          fila1[j - 1] * divisor; // Multiplica el valor anterior por el divisor
+      double nuevoValor = coeficientes[j] +
+          valorFila2; // Suma el resultado a la siguiente posición
+      fila1.add(nuevoValor); // Agrega el valor a la fila
+      print(
+          "Fila1 después del coeficiente $j: $fila1"); // Imprime la fila en cada iteración
+    }
+
+    // Si el último valor de la fila es 0, hemos encontrado una raíz
+    if (fila1.last == 0) {
+      raices.add(divisor);
+      resultados.clear();
+      resultados.addAll(fila1); // Guarda los resultados de la división
+      print("Raíz encontrada: $divisor");
     } else {
-      salida.writeln("No se encontró una raíz exacta.");
+      print("No es raíz: $divisor");
     }
-
-    // Mostrar las iteraciones de la división sintética
-    salida.writeln("Iteraciones de cada división sintética:");
-    for (var iteracion in iteraciones) {
-      salida.writeln(
-          "Divisor: ${iteracion['divisor']}, Resultados: ${iteracion['resultados']}");
-    }
-
-    return salida.toString();
   }
 }

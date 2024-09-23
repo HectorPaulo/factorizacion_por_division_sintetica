@@ -15,7 +15,6 @@ class _PaginaDefinirGradoEcuacionState
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   int _grado = 0;
   List<double> _coeficientes = [];
-  final double _valorIndependiente = 0;
   var img = 'assets/02.png';
 
   void _savePolinomio() {
@@ -25,7 +24,6 @@ class _PaginaDefinirGradoEcuacionState
       Polinomio polinomio = Polinomio(
         grado: _grado,
         coeficientes: _coeficientes,
-        valorIndependiente: _valorIndependiente,
       );
 
       // Navegar a la página de creación de ecuación, pasando el Polinomio

@@ -19,7 +19,6 @@ class _PaginaCrearEcuacionState extends State<PaginaCrearEcuacion> {
   Widget build(BuildContext context) {
     final int grado = widget.polinomio.grado;
     var coeficientes = widget.polinomio.coeficientes;
-    double valorIndependiente = widget.polinomio.valorIndependiente;
     return Scaffold(
       backgroundColor: Colors.black,
       body: Center(
@@ -125,10 +124,10 @@ class _PaginaCrearEcuacionState extends State<PaginaCrearEcuacion> {
                                 return null;
                               },
                               onChanged: (value) {
-                                setState(() {
-                                  coeficientes[i] =
-                                      double.tryParse(value) ?? 0.0;
-                                });
+                                coeficientes[i] = double.tryParse(value) ?? 0.0;
+                                print("Coeficientes: $coeficientes");
+                                print("Índice: $i");
+                                print("Valor: $value");
                               },
                             ),
                           )
@@ -176,9 +175,6 @@ class _PaginaCrearEcuacionState extends State<PaginaCrearEcuacion> {
                         Polinomio polinomio = Polinomio(
                           grado: grado,
                           coeficientes: coeficientes,
-                          valorIndependiente:
-                              double.tryParse(valorIndependiente.toString()) ??
-                                  0.0,
                         );
                         Navigator.push(
                           context,
