@@ -71,7 +71,6 @@ class PaginaBienvenida extends StatelessWidget {
               style: TextStyle(color: Colors.white),
             ),
             const SizedBox(height: 20),
-            // Agregando el TextButton correctamente con estilo y funcionalidad
             TextButton(
               style: TextButton.styleFrom(
                 foregroundColor: Colors.white,
@@ -95,7 +94,7 @@ class PaginaBienvenida extends StatelessWidget {
               ),
             ),
             const SizedBox(height: 60),
-            const Text("1.7.0 alpha", style: TextStyle(color: Colors.grey)),
+            const Text("1.8.2 alpha", style: TextStyle(color: Colors.grey)),
           ],
         ),
       ),
