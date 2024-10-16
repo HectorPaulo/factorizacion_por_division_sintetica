@@ -26,7 +26,6 @@ class _PaginaDefinirGradoEcuacionState
         coeficientes: _coeficientes,
       );
 
-      // Navegar a la página de creación de ecuación, pasando el Polinomio
       Navigator.push(
         context,
         MaterialPageRoute(
@@ -129,7 +128,7 @@ class _PaginaDefinirGradoEcuacionState
                   ElevatedButton(
                     style: TextButton.styleFrom(
                       padding: const EdgeInsets.all(16.0),
-                      backgroundColor: Color.fromRGBO(225, 28, 28, 0.98),
+                      backgroundColor: const Color.fromRGBO(225, 28, 28, 0.98),
                       shadowColor: Colors.white,
                     ),
                     onPressed: () {

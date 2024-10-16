@@ -11,12 +11,13 @@ class PaginaResultado extends StatefulWidget {
 }
 
 class _PaginaResultadoState extends State<PaginaResultado> {
-  String resultadoDivision = ''; // Variable para almacenar el resultado final
+  String resultadoDivision = '';
+  List<Widget> _mensajes = [];
 
   @override
   void initState() {
     super.initState();
-    _calcularDivisionSintetica(); // Calcular la división sintética al cargar la página
+    _calcularDivisionSintetica();
   }
 
   @override
@@ -24,7 +25,7 @@ class _PaginaResultadoState extends State<PaginaResultado> {
     return Scaffold(
       appBar: AppBar(
         foregroundColor: Colors.white,
-        backgroundColor: const Color.fromARGB(255, 92, 13, 8),
+        backgroundColor: const Color.fromARGB(255, 74, 7, 7),
         title: const Text(
           'S O L U C I O N E S',
           style: TextStyle(
@@ -32,62 +33,15 @@ class _PaginaResultadoState extends State<PaginaResultado> {
         ),
         centerTitle: true,
       ),
-      backgroundColor: Colors.black,
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            const SizedBox(height: 20),
-            Text(
-              _mostrarEcuacion(),
-              style: const TextStyle(fontSize: 18, color: Colors.white),
-            ),
-            const SizedBox(height: 20),
-            // Mostrar el resultado de la división sintética
-            Text(
-              resultadoDivision,
-              style: const TextStyle(fontSize: 18, color: Colors.white),
-              textAlign: TextAlign.center,
-            ),
-            const SizedBox(height: 20),
-            ElevatedButton(
-              onPressed: () {
-                Navigator.pop(context);
-              },
-              child:
-                  const Text('Volver', style: TextStyle(color: Colors.white)),
-              style: ElevatedButton.styleFrom(backgroundColor: Colors.red),
-            ),
-          ],
+      backgroundColor: const Color.fromARGB(255, 6, 29, 46),
+      body: SingleChildScrollView(
+        child: Center(
+          child: Column(
+            children: _mensajes,
+          ),
         ),
       ),
     );
-  }
-
-  String _mostrarEcuacion() {
-    String ecuacion = '';
-    for (int i = 0; i < widget.polinomio.coeficientes.length; i++) {
-      double coeficiente = widget.polinomio.coeficientes[i];
-      int exponente = widget.polinomio.grado - i;
-
-      if (coeficiente != 0) {
-        if (i > 0 && coeficiente > 0) {
-          ecuacion += ' + ';
-        } else if (coeficiente < 0) {
-          ecuacion += ' - ';
-          coeficiente = coeficiente.abs();
-        }
-
-        if (exponente > 1) {
-          ecuacion += '${coeficiente}x^$exponente';
-        } else if (exponente == 1) {
-          ecuacion += '${coeficiente}x';
-        } else {
-          ecuacion += '$coeficiente';
-        }
-      }
-    }
-    return ecuacion;
   }
 
   void _calcularDivisionSintetica() {
@@ -98,67 +52,85 @@ class _PaginaResultadoState extends State<PaginaResultado> {
     List<double> resultados = [];
     List<int> raices = [];
 
-    print("Coeficientes: $coeficientes");
-    print("Valor independiente: ${valorIndependiente}");
+    setState(() {
+      _mensajes.add(_crearMensaje("Coeficientes", coeficientes.toString()));
+    });
 
-    // Verificar divisores positivos de valorIndependiente
     for (int i = 1; i <= valorIndependiente.abs(); i++) {
       if (valorIndependiente % i == 0) {
         divisoresPositivos.add(i);
       }
     }
 
-    // Verificar divisores negativos de valorIndependiente
     for (int i = 1; i <= valorIndependiente.abs(); i++) {
       if (valorIndependiente % i == 0) {
         divisoresNegativos.add(-i);
       }
     }
 
-    // Simular la división sintética para divisores positivos
     for (var divisor in divisoresPositivos) {
       _procesarDivisionSintetica(coeficientes, divisor, resultados, raices);
+      setState(() {
+        _mensajes.add(_crearMensaje("Divisor positivo",
+            "$divisor, Resultados: ${resultados.toString()}, Raices: ${raices.toString()}"));
+      });
     }
 
-    // Simular la división sintética para divisores negativos
     for (var divisor in divisoresNegativos) {
       _procesarDivisionSintetica(coeficientes, divisor, resultados, raices);
+      setState(() {
+        _mensajes.add(_crearMensaje("Divisor negativo",
+            "$divisor, Resultados: ${resultados.toString()}, Raices: ${raices.toString()}"));
+      });
     }
-
-    // Mostrar los resultados en la interfaz
-    setState(() {
-      resultadoDivision = "Valor independiente: ${valorIndependiente}\n\n"
-          "Coeficientes: ${coeficientes}\n\n"
-          "Raíces: $raices\n\n"
-          "Resultados: $resultados";
-    });
   }
 
   void _procesarDivisionSintetica(List<double> coeficientes, int divisor,
       List<double> resultados, List<int> raices) {
     print("Probando el divisor: $divisor");
 
-    List<double> fila1 = [
-      coeficientes[0]
-    ]; // Inicializa la primera fila con el primer coeficiente
+    List<double> fila1 = [coeficientes[0]];
     for (int j = 1; j < coeficientes.length; j++) {
-      double valorFila2 =
-          fila1[j - 1] * divisor; // Multiplica el valor anterior por el divisor
-      double nuevoValor = coeficientes[j] +
-          valorFila2; // Suma el resultado a la siguiente posición
-      fila1.add(nuevoValor); // Agrega el valor a la fila
-      print(
-          "Fila1 después del coeficiente $j: $fila1"); // Imprime la fila en cada iteración
+      double valorFila2 = fila1[j - 1] * divisor;
+      double nuevoValor = coeficientes[j] + valorFila2;
+      fila1.add(nuevoValor);
+      print("Fila1 después del coeficiente $j: $fila1");
     }
 
-    // Si el último valor de la fila es 0, hemos encontrado una raíz
     if (fila1.last == 0) {
       raices.add(divisor);
       resultados.clear();
-      resultados.addAll(fila1); // Guarda los resultados de la división
+      resultados.addAll(fila1);
       print("Raíz encontrada: $divisor");
     } else {
       print("No es raíz: $divisor");
     }
+  }
+
+  Widget _crearMensaje(String titulo, String valor) {
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: Column(
+        children: [
+          Text(
+            titulo,
+            style: const TextStyle(
+                fontSize: 20,
+                color: Colors.white,
+                fontFamily: 'Monaspace Neon',
+                fontWeight: FontWeight.bold),
+            textAlign: TextAlign.center,
+          ),
+          Text(
+            valor,
+            style: const TextStyle(
+                fontSize: 20,
+                color: Colors.white,
+                fontFamily: 'Monaspace Neon'),
+            textAlign: TextAlign.center,
+          ),
+        ],
+      ),
+    );
   }
 }
