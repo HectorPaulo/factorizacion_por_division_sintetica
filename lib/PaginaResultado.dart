@@ -11,8 +11,8 @@ class PaginaResultado extends StatefulWidget {
 }
 
 class _PaginaResultadoState extends State<PaginaResultado> {
-  String resultadoDivision = '';
   List<Widget> _mensajes = [];
+  List<int> _raices = [];
 
   @override
   void initState() {
@@ -25,7 +25,7 @@ class _PaginaResultadoState extends State<PaginaResultado> {
     return Scaffold(
       appBar: AppBar(
         foregroundColor: Colors.white,
-        backgroundColor: const Color.fromARGB(255, 74, 7, 7),
+        backgroundColor: const Color.fromARGB(255, 0, 157, 3),
         title: const Text(
           'S O L U C I O N E S',
           style: TextStyle(
@@ -33,12 +33,52 @@ class _PaginaResultadoState extends State<PaginaResultado> {
         ),
         centerTitle: true,
       ),
-      backgroundColor: const Color.fromARGB(255, 6, 29, 46),
+      backgroundColor: const Color.fromARGB(255, 0, 0, 0),
       body: SingleChildScrollView(
         child: Center(
-          child: Column(
-            children: _mensajes,
-          ),
+          child: Row(children: [
+            SizedBox(
+              width: 150,
+            ),
+            Column(
+              children: _mensajes,
+            ),
+            Expanded(
+              child: Column(
+                children: [
+                  Column(
+                    children: _raices.map((raiz) {
+                      return Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Icon(Icons.beenhere, color: Colors.green),
+                          SizedBox(width: 10),
+                          Text(
+                            raiz.toString(),
+                            style: TextStyle(
+                              fontSize: 20,
+                              color: Colors.white,
+                              fontFamily: 'Monaspace Neon',
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                        ],
+                      );
+                    }).toList(),
+                  ),
+                  Image.asset(
+                    'assets/monaChina.png',
+                    fit: BoxFit.cover,
+                  ),
+                  Container(
+                    width: 200,
+                    height: 1,
+                    color: Colors.white,
+                  ),
+                ],
+              ),
+            ),
+          ]),
         ),
       ),
     );
@@ -47,64 +87,66 @@ class _PaginaResultadoState extends State<PaginaResultado> {
   void _calcularDivisionSintetica() {
     List<double> coeficientes = widget.polinomio.coeficientes;
     double valorIndependiente = widget.polinomio.coeficientes.last;
-    List<int> divisoresPositivos = [];
-    List<int> divisoresNegativos = [];
-    List<double> resultados = [];
+    List<int> divisores = [];
+
+    for (int i = 1; i <= valorIndependiente.abs(); i++) {
+      if (valorIndependiente % i == 0) {
+        divisores.add(i);
+        divisores.add(-i);
+      }
+    }
+
     List<int> raices = [];
-
-    setState(() {
-      _mensajes.add(_crearMensaje("Coeficientes", coeficientes.toString()));
-    });
-
-    for (int i = 1; i <= valorIndependiente.abs(); i++) {
-      if (valorIndependiente % i == 0) {
-        divisoresPositivos.add(i);
+    for (var divisor in divisores) {
+      List<double> resultados = [];
+      if (_procesarDivisionSintetica(coeficientes, divisor, resultados)) {
+        raices.add(divisor);
+        setState(() {
+          _mensajes.add(Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              _crearMensaje("$divisor", ""),
+              const Icon(Icons.navigate_next, color: Colors.amber),
+              _crearMensaje(
+                  "${coeficientes.toString()} ", "${resultados.toString()}"),
+              const Icon(Icons.check, color: Colors.green),
+              const SizedBox(width: 8),
+            ],
+          ));
+          _raices.add(divisor);
+        });
+      } else {
+        setState(() {
+          _mensajes.add(Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              _crearMensaje("$divisor", ""),
+              const Icon(Icons.navigate_next, color: Colors.amber),
+              _crearMensaje(
+                  "${coeficientes.toString()} ", "${resultados.toString()}"),
+              const Icon(Icons.close, color: Colors.red),
+              const SizedBox(width: 8),
+            ],
+          ));
+        });
       }
-    }
-
-    for (int i = 1; i <= valorIndependiente.abs(); i++) {
-      if (valorIndependiente % i == 0) {
-        divisoresNegativos.add(-i);
-      }
-    }
-
-    for (var divisor in divisoresPositivos) {
-      _procesarDivisionSintetica(coeficientes, divisor, resultados, raices);
-      setState(() {
-        _mensajes.add(_crearMensaje("Divisor positivo",
-            "$divisor, Resultados: ${resultados.toString()}, Raices: ${raices.toString()}"));
-      });
-    }
-
-    for (var divisor in divisoresNegativos) {
-      _procesarDivisionSintetica(coeficientes, divisor, resultados, raices);
-      setState(() {
-        _mensajes.add(_crearMensaje("Divisor negativo",
-            "$divisor, Resultados: ${resultados.toString()}, Raices: ${raices.toString()}"));
-      });
     }
   }
 
-  void _procesarDivisionSintetica(List<double> coeficientes, int divisor,
-      List<double> resultados, List<int> raices) {
-    print("Probando el divisor: $divisor");
-
+  bool _procesarDivisionSintetica(
+      List<double> coeficientes, int divisor, List<double> resultados) {
     List<double> fila1 = [coeficientes[0]];
     for (int j = 1; j < coeficientes.length; j++) {
       double valorFila2 = fila1[j - 1] * divisor;
       double nuevoValor = coeficientes[j] + valorFila2;
       fila1.add(nuevoValor);
-      print("Fila1 después del coeficiente $j: $fila1");
     }
 
     if (fila1.last == 0) {
-      raices.add(divisor);
-      resultados.clear();
       resultados.addAll(fila1);
-      print("Raíz encontrada: $divisor");
-    } else {
-      print("No es raíz: $divisor");
+      return true;
     }
+    return false;
   }
 
   Widget _crearMensaje(String titulo, String valor) {
