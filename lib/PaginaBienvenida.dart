@@ -25,6 +25,7 @@ class PaginaBienvenida extends StatelessWidget {
                 fontFamily: 'Arial',
                 fontWeight: FontWeight.bold,
               ),
+              textAlign: TextAlign.center,
             ),
             const SizedBox(height: 40),
             const Text(

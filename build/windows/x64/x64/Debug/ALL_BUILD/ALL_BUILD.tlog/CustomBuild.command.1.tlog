@@ -1,0 +1,10 @@
+^C:\USERS\PAULO\ONEDRIVE\DOCUMENTOS\FACTORIZACION_POR_DIVISION_SINTETICA\WINDOWS\CMAKELISTS.TXT
+setlocal
+"C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin\cmake.exe" -SC:/Users/paulo/OneDrive/Documentos/factorizacion_por_division_sintetica/windows -BC:/Users/paulo/OneDrive/Documentos/factorizacion_por_division_sintetica/build/windows/x64 --check-stamp-file C:/Users/paulo/OneDrive/Documentos/factorizacion_por_division_sintetica/build/windows/x64/CMakeFiles/generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd
