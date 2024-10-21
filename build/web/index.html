@@ -34,5 +34,24 @@
 </head>
 <body>
   <script src="flutter_bootstrap.js" async></script>
+  <script type="module">
+    // Import the functions you need from the SDKs you need
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.0/firebase-app.js";
+    // TODO: Add SDKs for Firebase products that you want to use
+    // https://firebase.google.com/docs/web/setup#available-libraries
+  
+    // Your web app's Firebase configuration
+    const firebaseConfig = {
+      apiKey: "AIzaSyAbHbeonmqCV0U5Gb5br8MZH0385qcsFvw",
+      authDomain: "division-sintetica.firebaseapp.com",
+      projectId: "division-sintetica",
+      storageBucket: "division-sintetica.appspot.com",
+      messagingSenderId: "962231580912",
+      appId: "1:962231580912:web:b7e2394c34de069c436a35"
+    };
+  
+    // Initialize Firebase
+    const app = initializeApp(firebaseConfig);
+  </script>
 </body>
 </html>
