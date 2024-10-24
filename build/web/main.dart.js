@@ -34949,7 +34949,7 @@ $1(a){return new A.nl(this.a.c,null)},
 $S:342}
 A.pT.prototype={
 K(a){var s=null
-return A.HS(s,B.l,A.hQ(A.eG(A.b([B.D8,B.h6,B.Qv,B.h6,B.Qt,B.h6,B.Qq,B.Lc,B.Qz,B.h6,B.QD,B.b6,B.Qy,B.b6,A.IX(B.Qx,new A.a2r(a),A.lo(s,s,A.Ec(225,28,28,0.98),s,s,s,s,s,s,B.j,s,s,B.bg,s,s,s,s,s,s)),B.ju,B.QE],t.D),B.N,B.aT,B.X),s,s))}}
+return A.HS(s,B.l,A.hQ(A.eG(A.b([B.D8,B.h6,B.Qv,B.h6,B.Qt,B.h6,B.Qq,B.Lc,B.Qz,B.h6,B.QE,B.b6,B.Qy,B.b6,A.IX(B.Qx,new A.a2r(a),A.lo(s,s,A.Ec(225,28,28,0.98),s,s,s,s,s,s,B.j,s,s,B.bg,s,s,s,s,s,s)),B.ju,B.QB],t.D),B.N,B.aT,B.X),s,s))}}
 A.a2r.prototype={
 $0(){var s=A.jh(new A.a2q(),null,t.z)
 A.hk(this.a).fL(s)},
@@ -34978,7 +34978,7 @@ K(a){var s=this.a.c
 return A.HS(A.ahH(B.l,!0,B.j,B.QG),B.l,new A.vJ(new A.acH(this,s.b,s.a),null))}}
 A.acH.prototype={
 $2(a,b){var s=null,r=this.a,q=this.b,p=q+1,o=this.c,n=t.D
-return A.hQ(A.amm(A.eG(A.b([B.ju,B.b6,A.aia(new A.G4(new A.a67(new A.acE(r,q,b,o),p,!0,!0,!0,s),s,B.aq,!1,s,s,B.yb,!1,s,p,B.ai,B.Jm,s,B.W,B.al,s)),B.b6,A.ic(A.b([A.uM(B.xA,new A.acF(a),A.lo(s,s,A.Ec(225,28,28,0.98),s,s,s,s,s,s,s,s,s,B.bg,B.j,s,s,s,s,s)),B.Lb,A.uM(B.QC,new A.acG(r,q,o,a),A.lo(s,s,B.j,s,s,s,s,s,s,B.j,s,s,B.bg,s,s,s,s,s,s))],n),B.N,B.aT,B.X),B.ju],n),B.N,B.aT,B.X),r.d),s,s)},
+return A.hQ(A.amm(A.eG(A.b([B.ju,B.b6,A.aia(new A.G4(new A.a67(new A.acE(r,q,b,o),p,!0,!0,!0,s),s,B.aq,!1,s,s,B.yb,!1,s,p,B.ai,B.Jm,s,B.W,B.al,s)),B.b6,A.ic(A.b([A.uM(B.xA,new A.acF(a),A.lo(s,s,A.Ec(225,28,28,0.98),s,s,s,s,s,s,s,s,s,B.bg,B.j,s,s,s,s,s)),B.Lb,A.uM(B.QD,new A.acG(r,q,o,a),A.lo(s,s,B.j,s,s,s,s,s,s,B.j,s,s,B.bg,s,s,s,s,s,s))],n),B.N,B.aT,B.X),B.ju],n),B.N,B.aT,B.X),r.d),s,s)},
 $S:113}
 A.acE.prototype={
 $2(a,b){var s,r=this,q=null,p=r.b,o=A.f6(b<p?"Coeficiente de X^"+(p-b):"T\xe9rmino independiente",q,q,q,B.Mz,q,q),n=r.c.b<600?100:150,m=r.a,l=m.e
@@ -78778,9 +78778,9 @@ B.TP=new A.ii(4,"remove")
 B.x5=new A.ii(5,"timeout")
 B.Lj=new A.qu(null,null,null,null,null,null,null,null,null,null,null,null,null,null)
 B.d9=new A.i(!0,B.j,null,null,null,null,20,B.as,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null)
-B.QB=new A.ce("Por favor ingresa un n\xfamero v\xe1lido",null,B.d9,null,null,null,null,null,null)
+B.QC=new A.ce("Por favor ingresa un n\xfamero v\xe1lido",null,B.d9,null,null,null,null,null,null)
 B.ie=new A.ay(200,200,200,200)
-B.Lk=new A.ih(B.QB,B.bm,null,B.ie,null,null,null,null,B.cr,null,null,null,null,B.dK,null,null,null,B.W,null)
+B.Lk=new A.ih(B.QC,B.bm,null,B.ie,null,null,null,null,B.cr,null,null,null,null,B.dK,null,null,null,B.W,null)
 B.QF=new A.ce("Por favor ingresa el coeficiente",null,B.d9,null,null,null,null,null,null)
 B.Ll=new A.ih(B.QF,B.bm,null,B.ie,null,null,null,null,B.cr,null,null,null,null,B.dK,null,null,null,B.W,null)
 B.QH=new A.ce("Por favor ingresa un grado v\xe1lido.",null,B.d9,null,null,null,null,null,null)
@@ -79160,15 +79160,15 @@ B.xz=new A.ce("Volver",null,B.d9,null,null,null,null,null,null)
 B.Qz=new A.ce("Diego Sosa Ram\xedrez",null,B.xx,null,null,null,null,null,null)
 B.xr=new A.i(!0,null,null,"Arial",null,null,30,B.as,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null)
 B.QA=new A.ce("S O L U C I O N E S",null,B.xr,null,null,null,null,null,null)
-B.QC=new A.ce("Guardar",null,B.xv,null,null,null,null,null,null)
-B.xw=new A.i(!0,B.j,null,"Arial",null,null,20,B.as,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null)
-B.QD=new A.ce("Factorizaci\xf3n por M\xe9todo de Divisi\xf3n Sint\xe9tica",null,B.xw,B.cs,null,null,null,null,null)
 B.AW=new A.k(4294309365)
 B.AE=new A.k(4290624957)
 B.GL=new A.cc([50,B.l3,100,B.AW,200,B.hW,300,B.l0,350,B.cI,400,B.AE,500,B.kX,600,B.dA,700,B.hS,800,B.bK,850,B.hN,900,B.kS],t.pl)
 B.H0=new A.jg(B.GL,4288585374)
 B.OW=new A.i(!0,B.H0,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null)
-B.QE=new A.ce("1.9.0 alpha",null,B.OW,null,null,null,null,null,null)
+B.QB=new A.ce("1.11.0 beta",null,B.OW,null,null,null,null,null,null)
+B.QD=new A.ce("Guardar",null,B.xv,null,null,null,null,null,null)
+B.xw=new A.i(!0,B.j,null,"Arial",null,null,20,B.as,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null)
+B.QE=new A.ce("Factorizaci\xf3n por M\xe9todo de Divisi\xf3n Sint\xe9tica",null,B.xw,B.cs,null,null,null,null,null)
 B.xA=new A.ce("Volver",null,B.xw,null,null,null,null,null,null)
 B.QG=new A.ce("C R E A R   E C U A C I \xd3 N",null,B.xr,null,null,null,null,null,null)
 B.TR=new A.a7x(0,"system")
