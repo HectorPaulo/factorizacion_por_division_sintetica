@@ -90,62 +90,44 @@ class _PaginaResultadoState extends State<PaginaResultado> {
       }
     }
 
-    List<int> raices = [];
     for (var divisor in divisores) {
       List<double> resultados = [];
       List<double> fila2 = [];
-      if (_procesarDivisionSintetica(
-          coeficientes, divisor, resultados, fila2)) {
-        raices.add(divisor);
-        setState(() {
-          _mensajes.add(Column(
-            children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  _crearMensaje("$divisor", ""),
-                  const Icon(Icons.navigate_next, color: Colors.amber),
-                  _crearMensaje("${coeficientes.toString()} ", ""),
-                ],
-              ),
-              _crearMensaje("${fila2.toString()} ", ""),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  _crearMensaje("${resultados.toString()} ", ""),
-                  const Icon(Icons.check, color: Colors.green),
-                  const SizedBox(width: 8),
-                ],
-              ),
-            ],
-          ));
+      bool esRaiz =
+          _procesarDivisionSintetica(coeficientes, divisor, resultados, fila2);
+
+      setState(() {
+        _mensajes.add(Column(
+          children: [
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                _crearMensaje("$divisor", ""),
+                const Icon(Icons.navigate_next, color: Colors.amber),
+                _crearMensaje("${coeficientes.toString()} ", ""),
+              ],
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                _crearMensaje("${fila2.toString()} ", ""),
+                Icon(esRaiz ? Icons.check : Icons.close,
+                    color: esRaiz ? Colors.green : Colors.red),
+              ],
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                _crearMensaje("${resultados.toString()} ", ""),
+              ],
+            ),
+            const Divider(color: Colors.white),
+          ],
+        ));
+        if (esRaiz) {
           _raices.add(divisor);
-        });
-      } else {
-        setState(() {
-          _mensajes.add(Column(
-            children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  _crearMensaje("$divisor", ""),
-                  const Icon(Icons.navigate_next, color: Colors.amber),
-                  _crearMensaje("${coeficientes.toString()} ", ""),
-                ],
-              ),
-              _crearMensaje("${fila2.toString()} ", ""),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  _crearMensaje("${resultados.toString()} ", ""),
-                  const Icon(Icons.close, color: Colors.red),
-                  const SizedBox(width: 8),
-                ],
-              ),
-            ],
-          ));
-        });
-      }
+        }
+      });
     }
   }
 
@@ -163,6 +145,7 @@ class _PaginaResultadoState extends State<PaginaResultado> {
       resultados.addAll(fila1);
       return true;
     }
+    resultados.addAll(fila1);
     return false;
   }
 
