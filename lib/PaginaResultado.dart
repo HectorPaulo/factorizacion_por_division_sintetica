@@ -65,8 +65,8 @@ class _PaginaResultadoState extends State<PaginaResultado> {
                   ),
                   Image.asset(
                     'assets/monaChina.png',
-                    fit: BoxFit.contain,
-                    // width: 400,
+                    // fit: BoxFit.contain,
+                    width: 400,
                   ),
                   Container(
                     width: 200,
