@@ -36,47 +36,43 @@ class _PaginaResultadoState extends State<PaginaResultado> {
       backgroundColor: const Color.fromARGB(255, 0, 0, 0),
       body: SingleChildScrollView(
         child: Center(
-          child: Row(children: [
-            Column(
-              children: _mensajes,
-            ),
-            Expanded(
-              child: Column(
-                children: [
-                  Column(
-                    children: _raices.map((raiz) {
-                      return Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Icon(Icons.beenhere, color: Colors.green),
-                          SizedBox(width: 10),
-                          Text(
-                            raiz.toString(),
-                            style: TextStyle(
-                              fontSize: 20,
-                              color: Colors.white,
-                              fontFamily: 'Monaspace Neon',
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                        ],
-                      );
-                    }).toList(),
-                  ),
-                  Image.asset(
-                    'assets/monaChina.png',
-                    // fit: BoxFit.contain,
-                    width: 400,
-                  ),
-                  Container(
-                    width: 200,
-                    height: 1,
-                    color: Colors.white,
-                  ),
-                ],
+          child: Column(
+            children: [
+              Column(
+                children: _mensajes,
               ),
-            ),
-          ]),
+              Column(
+                children: _raices.map((raiz) {
+                  return Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Icon(Icons.beenhere, color: Colors.green),
+                      SizedBox(width: 10),
+                      Text(
+                        raiz.toString(),
+                        style: TextStyle(
+                          fontSize: 20,
+                          color: Colors.white,
+                          fontFamily: 'Monaspace Neon',
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ],
+                  );
+                }).toList(),
+              ),
+              Image.asset(
+                'assets/monaChina.png',
+                fit: BoxFit.cover,
+                width: 600,
+              ),
+              Container(
+                width: 200,
+                height: 1,
+                color: Colors.white,
+              ),
+            ],
+          ),
         ),
       ),
     );
