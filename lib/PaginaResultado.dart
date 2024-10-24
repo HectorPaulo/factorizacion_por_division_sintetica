@@ -37,9 +37,6 @@ class _PaginaResultadoState extends State<PaginaResultado> {
       body: SingleChildScrollView(
         child: Center(
           child: Row(children: [
-            SizedBox(
-              width: 150,
-            ),
             Column(
               children: _mensajes,
             ),
@@ -100,33 +97,55 @@ class _PaginaResultadoState extends State<PaginaResultado> {
     List<int> raices = [];
     for (var divisor in divisores) {
       List<double> resultados = [];
-      if (_procesarDivisionSintetica(coeficientes, divisor, resultados)) {
+      List<double> fila2 = [];
+      if (_procesarDivisionSintetica(
+          coeficientes, divisor, resultados, fila2)) {
         raices.add(divisor);
         setState(() {
-          _mensajes.add(Row(
-            mainAxisAlignment: MainAxisAlignment.center,
+          _mensajes.add(Column(
             children: [
-              _crearMensaje("$divisor", ""),
-              const Icon(Icons.navigate_next, color: Colors.amber),
-              _crearMensaje(
-                  "${coeficientes.toString()} ", "${resultados.toString()}"),
-              const Icon(Icons.check, color: Colors.green),
-              const SizedBox(width: 8),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  _crearMensaje("$divisor", ""),
+                  const Icon(Icons.navigate_next, color: Colors.amber),
+                  _crearMensaje("${coeficientes.toString()} ", ""),
+                ],
+              ),
+              _crearMensaje("${fila2.toString()} ", ""),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  _crearMensaje("${resultados.toString()} ", ""),
+                  const Icon(Icons.check, color: Colors.green),
+                  const SizedBox(width: 8),
+                ],
+              ),
             ],
           ));
           _raices.add(divisor);
         });
       } else {
         setState(() {
-          _mensajes.add(Row(
-            mainAxisAlignment: MainAxisAlignment.center,
+          _mensajes.add(Column(
             children: [
-              _crearMensaje("$divisor", ""),
-              const Icon(Icons.navigate_next, color: Colors.amber),
-              _crearMensaje(
-                  "${coeficientes.toString()} ", "${resultados.toString()}"),
-              const Icon(Icons.close, color: Colors.red),
-              const SizedBox(width: 8),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  _crearMensaje("$divisor", ""),
+                  const Icon(Icons.navigate_next, color: Colors.amber),
+                  _crearMensaje("${coeficientes.toString()} ", ""),
+                ],
+              ),
+              _crearMensaje("${fila2.toString()} ", ""),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  _crearMensaje("${resultados.toString()} ", ""),
+                  const Icon(Icons.close, color: Colors.red),
+                  const SizedBox(width: 8),
+                ],
+              ),
             ],
           ));
         });
@@ -134,11 +153,12 @@ class _PaginaResultadoState extends State<PaginaResultado> {
     }
   }
 
-  bool _procesarDivisionSintetica(
-      List<double> coeficientes, int divisor, List<double> resultados) {
+  bool _procesarDivisionSintetica(List<double> coeficientes, int divisor,
+      List<double> resultados, List<double> fila2) {
     List<double> fila1 = [coeficientes[0]];
     for (int j = 1; j < coeficientes.length; j++) {
       double valorFila2 = fila1[j - 1] * divisor;
+      fila2.add(valorFila2);
       double nuevoValor = coeficientes[j] + valorFila2;
       fila1.add(nuevoValor);
     }
