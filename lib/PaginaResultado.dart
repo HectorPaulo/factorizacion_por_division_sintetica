@@ -12,7 +12,7 @@ class PaginaResultado extends StatefulWidget {
 
 class _PaginaResultadoState extends State<PaginaResultado> {
   List<Widget> _mensajes = [];
-  List<int> _raices = [];
+  Set<double> _raices = {};
 
   @override
   void initState() {
@@ -81,12 +81,12 @@ class _PaginaResultadoState extends State<PaginaResultado> {
   void _calcularDivisionSintetica() {
     List<double> coeficientes = widget.polinomio.coeficientes;
     double valorIndependiente = widget.polinomio.coeficientes.last;
-    List<int> divisores = [];
+    List<double> divisores = [];
 
     for (int i = 1; i <= valorIndependiente.abs(); i++) {
       if (valorIndependiente % i == 0) {
-        divisores.add(i);
-        divisores.add(-i);
+        divisores.add(i.toDouble());
+        divisores.add(-i.toDouble());
       }
     }
 
@@ -107,21 +107,16 @@ class _PaginaResultadoState extends State<PaginaResultado> {
                 _crearMensaje("${coeficientes.toString()} ", ""),
               ],
             ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                _crearMensaje("${fila2.toString()} ", ""),
-                Icon(esRaiz ? Icons.check : Icons.close,
-                    color: esRaiz ? Colors.green : Colors.red),
-              ],
-            ),
+            _crearMensaje("${fila2.toString()} ", ""),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 _crearMensaje("${resultados.toString()} ", ""),
+                Icon(esRaiz ? Icons.check : Icons.close,
+                    color: esRaiz ? Colors.green : Colors.red),
+                const SizedBox(width: 8),
               ],
             ),
-            const Divider(color: Colors.white),
           ],
         ));
         if (esRaiz) {
@@ -129,9 +124,41 @@ class _PaginaResultadoState extends State<PaginaResultado> {
         }
       });
     }
+
+    for (double i = -10; i <= 10; i += 0.1) {
+      i = double.parse(i.toStringAsFixed(1));
+      List<double> resultados = [];
+      List<double> fila2 = [];
+      bool esRaiz =
+          _procesarDivisionSintetica(coeficientes, i, resultados, fila2);
+
+      setState(() {
+        if (esRaiz) {
+          _raices.add(i);
+        }
+      });
+    }
+
+    // Probar divisores fraccionarios
+    for (double i = -10; i <= 10; i += 0.1) {
+      for (double j = 1; j <= 10; j += 0.1) {
+        double divisor = i / j;
+        divisor = double.parse(divisor.toStringAsFixed(2));
+        List<double> resultados = [];
+        List<double> fila2 = [];
+        bool esRaiz = _procesarDivisionSintetica(
+            coeficientes, divisor, resultados, fila2);
+
+        setState(() {
+          if (esRaiz) {
+            _raices.add(divisor);
+          }
+        });
+      }
+    }
   }
 
-  bool _procesarDivisionSintetica(List<double> coeficientes, int divisor,
+  bool _procesarDivisionSintetica(List<double> coeficientes, double divisor,
       List<double> resultados, List<double> fila2) {
     List<double> fila1 = [coeficientes[0]];
     for (int j = 1; j < coeficientes.length; j++) {
@@ -141,7 +168,7 @@ class _PaginaResultadoState extends State<PaginaResultado> {
       fila1.add(nuevoValor);
     }
 
-    if (fila1.last == 0) {
+    if (fila1.last.abs() < 1e-6) {
       resultados.addAll(fila1);
       return true;
     }
