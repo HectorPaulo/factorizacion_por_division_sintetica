@@ -1,8 +1,8 @@
-# Install script for directory: /home/paulo/Documentos/flutter/factorizacion_por_division_sintetica/linux/flutter
+# Install script for directory: /home/paulo/Documentos/metodos-numericos/factorizacion_por_division_sintetica/linux/flutter
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
-  set(CMAKE_INSTALL_PREFIX "/home/paulo/Documentos/flutter/factorizacion_por_division_sintetica/build/linux/x64/debug/bundle")
+  set(CMAKE_INSTALL_PREFIX "/home/paulo/Documentos/metodos-numericos/factorizacion_por_division_sintetica/build/linux/x64/debug/bundle")
 endif()
 string(REGEX REPLACE "/$" "" CMAKE_INSTALL_PREFIX "${CMAKE_INSTALL_PREFIX}")
 
@@ -42,3 +42,9 @@ if(NOT DEFINED CMAKE_OBJDUMP)
   set(CMAKE_OBJDUMP "/usr/bin/llvm-objdump")
 endif()
 
+string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
+       "${CMAKE_INSTALL_MANIFEST_FILES}")
+if(CMAKE_INSTALL_LOCAL_ONLY)
+  file(WRITE "/home/paulo/Documentos/metodos-numericos/factorizacion_por_division_sintetica/build/linux/x64/debug/flutter/install_local_manifest.txt"
+     "${CMAKE_INSTALL_MANIFEST_CONTENT}")
+endif()

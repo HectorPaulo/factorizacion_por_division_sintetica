@@ -104,14 +104,40 @@ class _PaginaResultadoState extends State<PaginaResultado> {
               children: [
                 _crearMensaje("$divisor", ""),
                 const Icon(Icons.navigate_next, color: Colors.amber),
-                _crearMensaje("${coeficientes.toString()} ", ""),
+                Text(
+                  "${coeficientes.toString()} ",
+                  style: const TextStyle(
+                      fontSize: 20,
+                      color: Colors.white,
+                      fontFamily: 'Monaspace Neon',
+                      fontWeight: FontWeight.bold),
+                ),
               ],
             ),
-            _crearMensaje("${fila2.toString()} ", ""),
+            Text(
+              "${fila2.toString()} ",
+              style: const TextStyle(
+                  fontSize: 20,
+                  color: Colors.white,
+                  fontFamily: 'Monaspace Neon'),
+            ),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                _crearMensaje("${resultados.toString()} ", ""),
+                Container(
+                  decoration: BoxDecoration(
+                    border: Border.all(color: Colors.white),
+                    borderRadius: BorderRadius.circular(8),
+                  ),
+                  padding: const EdgeInsets.all(8.0),
+                  child: Text(
+                    "${resultados.toString()} ",
+                    style: const TextStyle(
+                        fontSize: 20,
+                        color: Colors.white,
+                        fontFamily: 'Monaspace Neon'),
+                  ),
+                ),
                 Icon(esRaiz ? Icons.check : Icons.close,
                     color: esRaiz ? Colors.green : Colors.red),
                 const SizedBox(width: 8),
@@ -179,26 +205,33 @@ class _PaginaResultadoState extends State<PaginaResultado> {
   Widget _crearMensaje(String titulo, String valor) {
     return Padding(
       padding: const EdgeInsets.all(8.0),
-      child: Column(
-        children: [
-          Text(
-            titulo,
-            style: const TextStyle(
-                fontSize: 20,
-                color: Colors.white,
-                fontFamily: 'Monaspace Neon',
-                fontWeight: FontWeight.bold),
-            textAlign: TextAlign.center,
-          ),
-          Text(
-            valor,
-            style: const TextStyle(
-                fontSize: 20,
-                color: Colors.white,
-                fontFamily: 'Monaspace Neon'),
-            textAlign: TextAlign.center,
-          ),
-        ],
+      child: Container(
+        decoration: BoxDecoration(
+          border: Border.all(color: Colors.white),
+          borderRadius: BorderRadius.circular(8),
+        ),
+        padding: const EdgeInsets.all(8.0),
+        child: Column(
+          children: [
+            Text(
+              titulo,
+              style: const TextStyle(
+                  fontSize: 20,
+                  color: Colors.white,
+                  fontFamily: 'Monaspace Neon',
+                  fontWeight: FontWeight.bold),
+              textAlign: TextAlign.center,
+            ),
+            Text(
+              valor,
+              style: const TextStyle(
+                  fontSize: 20,
+                  color: Colors.white,
+                  fontFamily: 'Monaspace Neon'),
+              textAlign: TextAlign.center,
+            ),
+          ],
+        ),
       ),
     );
   }
