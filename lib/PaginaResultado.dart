@@ -12,7 +12,7 @@ class PaginaResultado extends StatefulWidget {
 
 class _PaginaResultadoState extends State<PaginaResultado> {
   List<Widget> _mensajes = [];
-  Set<double> _raices = {};
+  List<double> _raices = [];
 
   @override
   void initState() {
@@ -79,109 +79,103 @@ class _PaginaResultadoState extends State<PaginaResultado> {
   }
 
   void _calcularDivisionSintetica() {
-    List<double> coeficientes = widget.polinomio.coeficientes;
-    double valorIndependiente = widget.polinomio.coeficientes.last;
+    List<double> coeficientes = List.from(widget.polinomio.coeficientes);
+    double valorIndependiente = coeficientes.last;
+    double coeficientePrincipal = coeficientes.first;
     List<double> divisores = [];
 
-    for (int i = 1; i <= valorIndependiente.abs(); i++) {
-      if (valorIndependiente % i == 0) {
-        divisores.add(i.toDouble());
-        divisores.add(-i.toDouble());
+    // Generar divisores fraccionarios: término independiente / coeficiente principal
+    List<int> divisoresIndependiente =
+        _obtenerDivisores(valorIndependiente.abs().toInt());
+    List<int> divisoresPrincipal =
+        _obtenerDivisores(coeficientePrincipal.abs().toInt());
+
+    for (int num in divisoresIndependiente) {
+      for (int denom in divisoresPrincipal) {
+        divisores.add(num / denom);
+        divisores.add(-num / denom);
       }
     }
 
+    // Eliminar duplicados en divisores
+    divisores = divisores.toSet().toList();
+
+    // Probar divisores y buscar raíces repetidas
     for (var divisor in divisores) {
-      List<double> resultados = [];
-      List<double> fila2 = [];
-      bool esRaiz =
-          _procesarDivisionSintetica(coeficientes, divisor, resultados, fila2);
-
-      setState(() {
-        _mensajes.add(Column(
-          children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                _crearMensaje("$divisor", ""),
-                const Icon(Icons.navigate_next, color: Colors.amber),
-                Text(
-                  "${coeficientes.toString()} ",
-                  style: const TextStyle(
-                      fontSize: 20,
-                      color: Colors.white,
-                      fontFamily: 'Monaspace Neon',
-                      fontWeight: FontWeight.bold),
-                ),
-              ],
-            ),
-            Text(
-              "${fila2.toString()} ",
-              style: const TextStyle(
-                  fontSize: 20,
-                  color: Colors.white,
-                  fontFamily: 'Monaspace Neon'),
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Container(
-                  decoration: BoxDecoration(
-                    border: Border.all(color: Colors.white),
-                    borderRadius: BorderRadius.circular(8),
-                  ),
-                  padding: const EdgeInsets.all(8.0),
-                  child: Text(
-                    "${resultados.toString()} ",
-                    style: const TextStyle(
-                        fontSize: 20,
-                        color: Colors.white,
-                        fontFamily: 'Monaspace Neon'),
-                  ),
-                ),
-                Icon(esRaiz ? Icons.check : Icons.close,
-                    color: esRaiz ? Colors.green : Colors.red),
-                const SizedBox(width: 8),
-              ],
-            ),
-          ],
-        ));
-        if (esRaiz) {
-          _raices.add(divisor);
-        }
-      });
-    }
-
-    for (double i = -10; i <= 10; i += 0.1) {
-      i = double.parse(i.toStringAsFixed(1));
-      List<double> resultados = [];
-      List<double> fila2 = [];
-      bool esRaiz =
-          _procesarDivisionSintetica(coeficientes, i, resultados, fila2);
-
-      setState(() {
-        if (esRaiz) {
-          _raices.add(i);
-        }
-      });
-    }
-
-    // Probar divisores fraccionarios
-    for (double i = -10; i <= 10; i += 0.1) {
-      for (double j = 1; j <= 10; j += 0.1) {
-        double divisor = i / j;
-        divisor = double.parse(divisor.toStringAsFixed(2));
+      while (true) {
         List<double> resultados = [];
         List<double> fila2 = [];
         bool esRaiz = _procesarDivisionSintetica(
             coeficientes, divisor, resultados, fila2);
 
-        setState(() {
-          if (esRaiz) {
-            _raices.add(divisor);
-          }
-        });
+        if (esRaiz) {
+          setState(() {
+            _raices.add(divisor); // Agregar la raíz repetida
+            _mensajes.add(Column(
+              children: [
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    _crearMensaje("$divisor", ""),
+                    const Icon(Icons.navigate_next, color: Colors.amber),
+                    Text(
+                      "${coeficientes.toString()} ",
+                      style: const TextStyle(
+                          fontSize: 20,
+                          color: Colors.white,
+                          fontFamily: 'Monaspace Neon',
+                          fontWeight: FontWeight.bold),
+                    ),
+                  ],
+                ),
+                Text(
+                  "${fila2.toString()} ",
+                  style: const TextStyle(
+                      fontSize: 20,
+                      color: Colors.white,
+                      fontFamily: 'Monaspace Neon'),
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Container(
+                      decoration: BoxDecoration(
+                        border: Border.all(color: Colors.white),
+                        borderRadius: BorderRadius.circular(8),
+                      ),
+                      padding: const EdgeInsets.all(8.0),
+                      child: Text(
+                        "${resultados.toString()} ",
+                        style: const TextStyle(
+                            fontSize: 20,
+                            color: Colors.white,
+                            fontFamily: 'Monaspace Neon'),
+                      ),
+                    ),
+                    Icon(Icons.check, color: Colors.green),
+                    const SizedBox(width: 8),
+                  ],
+                ),
+              ],
+            ));
+          });
+          coeficientes =
+              List.from(resultados.sublist(0, resultados.length - 1));
+        } else {
+          break; // Salir si ya no es raíz
+        }
       }
     }
+  }
+
+  List<int> _obtenerDivisores(int numero) {
+    List<int> divisores = [];
+    for (int i = 1; i <= numero; i++) {
+      if (numero % i == 0) {
+        divisores.add(i);
+      }
+    }
+    return divisores;
   }
 
   bool _procesarDivisionSintetica(List<double> coeficientes, double divisor,
@@ -194,7 +188,7 @@ class _PaginaResultadoState extends State<PaginaResultado> {
       fila1.add(nuevoValor);
     }
 
-    if (fila1.last.abs() < 1e-6) {
+    if (fila1.last.abs() < 1e-10) {
       resultados.addAll(fila1);
       return true;
     }
